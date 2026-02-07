@@ -1,16 +1,10 @@
 [build]
-  publish = "."
+  publish = "."      # Veröffentliche das aktuelle Verzeichnis
 
-# REGEL 1: Die Datenbank-Datei MUSS direkt erreichbar sein (Ausnahme)
-[[redirects]]
-  from = "/go/links.json"
-  to = "/go/links.json"
-  status = 200
-  force = true
-
-# REGEL 2: Alles andere geht zur App (Single Page Application)
+# Regel: Leite alles, was NICHT existiert, auf die App um.
+# WICHTIG: Kein 'force = true' hier!
+# Das sorgt dafür, dass 'links.json' automatisch geladen wird, weil es existiert.
 [[redirects]]
   from = "/go/*"
   to = "/go/index.html"
   status = 200
-  force = true
