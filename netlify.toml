@@ -1,6 +1,14 @@
 [build]
-  publish = "public"
+  publish = "."
 
+# REGEL 1: Die Datenbank-Datei MUSS direkt erreichbar sein (Ausnahme)
+[[redirects]]
+  from = "/go/links.json"
+  to = "/go/links.json"
+  status = 200
+  force = true
+
+# REGEL 2: Alles andere geht zur App (Single Page Application)
 [[redirects]]
   from = "/go/*"
   to = "/go/index.html"
