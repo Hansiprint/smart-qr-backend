@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 
-<html class="light" lang="de"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>D-Shirts Lookbook Homepage</title>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Google Fonts: Manrope (Sans) and Playfair Display (Serif for high-fashion feel) -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>D-Shirts Lookbook Homepage</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Google Fonts: Manrope (Sans) and Playfair Display (Serif for high-fashion feel) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -34,179 +42,227 @@
             },
         }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
+
         body {
             font-family: 'Manrope', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
 <body class="bg-background-light dark:bg-background-dark text-[#1b0d10] dark:text-white transition-colors duration-300">
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-<!-- TopAppBar / Header -->
-<header class="fixed top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
-<div class="flex items-center gap-4">
-<button aria-label="Menu" class="flex items-center justify-center p-1">
-<span class="material-symbols-outlined text-2xl">menu</span>
-</button>
-</div>
-<h2 class="text-[#1b0d10] dark:text-white text-xl font-bold tracking-[0.2em] leading-tight flex-1 text-center font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- TopAppBar / Header -->
+        <header
+            class="fixed top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+            <div class="flex items-center gap-4">
+                <button aria-label="Menu" class="flex items-center justify-center p-1">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+            <h2
+                class="text-[#1b0d10] dark:text-white text-xl font-bold tracking-[0.2em] leading-tight flex-1 text-center font-display">
                 D-SHIRTS
             </h2>
-<div class="flex items-center justify-end gap-2">
-<button aria-label="Search" class="flex items-center justify-center p-1">
-<span class="material-symbols-outlined text-2xl">search</span>
-</button>
-</div>
-</header>
-<!-- Main Content Area -->
-<main class="pt-24 pb-20">
-<!-- Hero Title: Elegant Serif Headline -->
-<div class="px-6 py-12 text-center max-w-4xl mx-auto">
-<h1 class="font-serif italic text-[42px] md:text-[64px] leading-[1.1] tracking-tight text-[#1b0d10] dark:text-white">
+            <div class="flex items-center justify-end gap-2">
+                <button aria-label="Search" class="flex items-center justify-center p-1">
+                    <span class="material-symbols-outlined text-2xl">search</span>
+                </button>
+            </div>
+        </header>
+        <!-- Main Content Area -->
+        <main class="pt-24 pb-20">
+            <!-- Hero Title: Elegant Serif Headline -->
+            <div class="px-6 py-12 text-center max-w-4xl mx-auto">
+                <h1
+                    class="font-serif italic text-[42px] md:text-[64px] leading-[1.1] tracking-tight text-[#1b0d10] dark:text-white">
                     Die Neue Kollektion
                 </h1>
-<div class="mt-4 h-px w-16 bg-primary mx-auto"></div>
-<p class="mt-6 text-sm uppercase tracking-[0.3em] font-medium text-gray-500 dark:text-gray-400">
+                <div class="mt-4 h-px w-16 bg-primary mx-auto"></div>
+                <p class="mt-6 text-sm uppercase tracking-[0.3em] font-medium text-gray-500 dark:text-gray-400">
                     Spring / Summer 2024
                 </p>
-</div>
-<!-- Lookbook Grid: 1 column mobile, 3 columns tablet/desktop -->
-<section class="px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-8 max-w-7xl mx-auto">
-<!-- Item 1 -->
-<a class="group flex flex-col gap-4" href="image-1.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 001" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Model posing in minimalist white t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOGRkYjZlP8hMbBy9haCOvWqa1_OZU-o7Xt08dAcXiKZejo-YQraoGbNQ7N9mt9g5nYCFG3p1mhQz656HLbM8ITAciA_66z3e8cAO8MFI_8-cnffndxzkPyrXpYOpGTdXEtvXBKVgxGDFNvrd_FO3AC0COPVEOpRqzPL4_PM5BNL82AZopMXsMlWxVzImF1cLLQJJNSP8s8whKYzjIDTbMQOICTuxvKKPVRS6-onpVTduodRWDXlYiGowgm1SjdHpAGrP_UEyBkh4"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #001 — The Origin</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 2 -->
-<a class="group flex flex-col gap-4" href="image-2.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 002" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Editorial shot of t-shirt with urban texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZwVwdXqiH3YJTYT8LOdD-gEBgBNRbifTBxgpKE043FuyWf92cHizKuPiWcz8be22cyZveNvVGaBpANz4qNfzorsHTfuPQU2fFUK8J5ex7hCtmUXQvdy1LwU1pBP3csK1VWpqnKepmnJ8PbHa2yqatRM9KFZsqhtYVADzJdh9f1tioTowRgJigDEhNOSZRreD4E6xJOWGvGoa6oGvTsAA5oyI9ARQN_XnL1NJM1RgTGJm1_lPVZexnORvcPanzMSOwTAeAPA2jZ9k"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #002 — Urban Flow</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 3 -->
-<a class="group flex flex-col gap-4" href="image-3.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 003" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Close up of minimalist t-shirt fabric detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSuoxyXoXQgDq3aGfK47_oYtOdcUtsWRJ2hUYAZC_9jota1bWW3Es604mBR2zEZ5Zv-jkYJ5WdNPdRo5bydUqckoybRpL3gOUrduS80dUJlf-Mbc0jMd94LnUkLgvLMq6gFfbD3jAUAkdRZtMz0raeyf6qQGLVrxWCRogWyLe21DHukxGoWV5OoNHo6q2lVjVhoQvx_wCCfGds6T0hGjXlboxas3OrjBkqjLstId1tWtD5mnMNcqM1SM57DhxB20QvHGhEgSU6Ohk"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #003 — Minimalist Dream</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 4 -->
-<a class="group flex flex-col gap-4" href="image-4.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 004" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="High fashion portrait in street style t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5S662JqpWkfpT-ZfY33t6HhuHgFpwie9TqODUyCdoTiWU_Wb7FHC0qXM_XPL-7DTZMIgcE4x_XoWQiSYjILNPGYZt8479Z4bSkwsIfTT_9zzJX3vl5xiUsBUYOrd0ZDRvh0jr-ef4c7ZTMAyb58GV3_VBPy97Rv4brGNJIFSGKVg3MUuTUBQO5hbS8weq4C1WitzbgNc6ZSS02e1w5Bn7Q2S_6bUGEIzfM0LikIG1Xj1MK1zh0F3kZqWnSDyQ-SYjfa786YKyOBo"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #004 — Modern Edge</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 5 -->
-<a class="group flex flex-col gap-4" href="image-5.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 005" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Geometric pattern t-shirt on aesthetic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfwCJOzAZqh_oMkeKJcYZ0ORFH9EX9EwVP2q1nOzpQlJSOo7f0Y_Luti1hx8HJDQqu0afDhzM95NwA0PDP08QiikqXDX5iCZgrIISTg8L_4Me0YAxEhRVyhIhyjKyXbK_WhTYpuF5ifiQ1nJisb4HVR1Ax3q5yYIlfzP4blz0-wWH7JDdMdoHwk9_QXCHJ19AT3QyswZ7SlTYBdOZrmqyi6VgmJ2S9UzPaVLQm9CB3V4cYRSseG-xi0pImiqoUALHgDL6_U8OsjYo"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #005 — Pure Form</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 6 -->
-<a class="group flex flex-col gap-4" href="image-6.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 006" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Model wearing oversized graphic t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDduzlogT1e3tTZl35nzlGqpkCIBby8g8AZHVxZZHmuzxAjfkrFg2R9NfG8AijKaz-ycOKND0tXKEVtenXuV4m7d_9oOooluI4aFhkAm6qNWIVeah1piLBt4o3opgXceAfFghetXJ4jA4VuC42TZFBh0OqFI42Fv8b1M3VzaFRVxEtd8cvn_eBPd7jXD7CxaDG0TY_IB9GjVx6vK7QbCTgKFl4MHhokI8chXacvSusL5wGobYHPjKAOVtbjTPj7PuXS1DOx_U-sL4I"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #006 — Style Statement</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 7 -->
-<a class="group flex flex-col gap-4" href="image-7.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 007" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Vintage style t-shirt lookbook photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6bb9tjul5I-WejU3M37ozysM7LnRgch5ue861rarGnV1QCc_rqz_TW4yj-wepaaKD357k2X8EnyWFZrUGpH80RBV-m2MWUmRWIiiyiGBJcFsHLR4TMYDxu7fauAsV8JUSwQptemux6AeS9ehZVuV-dwj2SUyzJm9BVnEvXzxJxIlyxYIQQCCNZH3us1n9oh9CIYxvQUJU-HQmZy61q0rM9E0uaOsBs2Qu6fK6hIhbgrX7ipVfb4VWn2FOAQvly1LI_Yppvp9cdlA"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #007 — Timeless Look</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 8 -->
-<a class="group flex flex-col gap-4" href="image-8.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 008" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Abstract graphic tee in studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhriRVVzgdn6TSpupy9KjzlzKRekri2HU9PEgnUJF8qGZIkarr4lESbBCvKVsE9LHlOA7xELJrar8wjoXPaQJ11gxtluA9VwIcOcEO72D1Od0dXb1VFRL54ObGmOaaG2UDywfzYDPIfVoSebmHnFqqLb1Pbf7ZZ-xyPo49I_NsOPgdaf5XqmctwJbjIo5majSopw1VXrGnRcFd5vMNxccPFUGl1mfBvC31bg8JfI5PWbZGOFNdmy1gjbmVXtr1L-dtcLSwwYuAVGg"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #008 — Graphic Pulse</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-<!-- Item 9 -->
-<a class="group flex flex-col gap-4" href="image-9.html">
-<div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
-<img alt="Fashion model wearing Design 009" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Final shot of the collection t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5ZCHvZr_xdb2PNtemBegTDjVQQMlEvQcnWJjfMgMm4ZEKhZ4nIM5SBYL_6vqhagKrexROq7uHpB1af5WYkAP4Ii-02K_Q_0hpn-Y553IgUqtyQxja-7QyEMWvivMKHNoKFGdg8LLldtvLXBRSsXHxQmVOhO-zBLjoW7qh_5qK-36wSH8gHtaFawzKjH4Exxj5t3bu8UgwobldXox3lAnARfwYk61S6bntN2D_ikPptkHedVNLhKXYl36CpEuA2nTVjS_Y2Ke3Z0E"/>
-</div>
-<div class="text-center md:text-left px-2">
-<p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">Design #009 — Final Cut</p>
-<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
-</div>
-</a>
-</section>
-</main>
-<!-- Minimalist Editorial Footer -->
-<footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-100 dark:border-gray-800 text-center">
-<div class="flex flex-col items-center gap-10 max-w-xl mx-auto">
-<h3 class="font-serif italic text-2xl">D-Shirts</h3>
-<nav class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-<a class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-primary transition-colors" href="#">Archives</a>
-<a class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-primary transition-colors" href="#">About</a>
-<a class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-primary transition-colors" href="#">Contact</a>
-</nav>
-<div class="flex gap-8">
-<a class="text-gray-400 hover:text-primary transition-colors" href="#">
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-</a>
-<a class="text-gray-400 hover:text-primary transition-colors" href="#">
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
-</a>
-</div>
-<p class="text-[10px] tracking-widest text-gray-400 font-medium">© 2024 D-SHIRTS LOOKBOOK</p>
-</div>
-</footer>
-<!-- iOS Style Bottom Navigation Bar -->
-<nav class="fixed bottom-0 z-50 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 flex justify-around items-center pt-2 pb-6">
-<a class="flex flex-col items-center gap-1 text-primary" href="#">
-<span class="material-symbols-outlined text-2xl font-bold" style="font-variation-settings: 'FILL' 1;">home</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
-<span class="material-symbols-outlined text-2xl">grid_view</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
-<span class="material-symbols-outlined text-2xl">favorite</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
-<span class="material-symbols-outlined text-2xl">person</span>
-</a>
-</nav>
-</div>
-</body></html>
+            </div>
+            <!-- Lookbook Grid: 1 column mobile, 3 columns tablet/desktop -->
+            <section class="px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-8 max-w-7xl mx-auto">
+                <!-- Item 1 -->
+                <a class="group flex flex-col gap-4" href="image-1.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 001"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Model posing in minimalist white t-shirt" src="images/image-1.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #001 — The Origin</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 2 -->
+                <a class="group flex flex-col gap-4" href="image-2.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 002"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Editorial shot of t-shirt with urban texture" src="images/image-2.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #002 — Urban Flow</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 3 -->
+                <a class="group flex flex-col gap-4" href="image-3.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 003"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Close up of minimalist t-shirt fabric detail" src="images/image-3.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #003 — Minimalist Dream</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 4 -->
+                <a class="group flex flex-col gap-4" href="image-4.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 004"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="High fashion portrait in street style t-shirt" src="images/image-4.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #004 — Modern Edge</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 5 -->
+                <a class="group flex flex-col gap-4" href="image-5.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 005"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Geometric pattern t-shirt on aesthetic background" src="images/image-5.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #005 — Pure Form</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 6 -->
+                <a class="group flex flex-col gap-4" href="image-6.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 006"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Model wearing oversized graphic t-shirt" src="images/image-6.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #006 — Style Statement</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 7 -->
+                <a class="group flex flex-col gap-4" href="image-7.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 007"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Vintage style t-shirt lookbook photography" src="images/image-7.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #007 — Timeless Look</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 8 -->
+                <a class="group flex flex-col gap-4" href="image-8.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 008"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Abstract graphic tee in studio lighting" src="images/image-8.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #008 — Graphic Pulse</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+                <!-- Item 9 -->
+                <a class="group flex flex-col gap-4" href="image-9.html">
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+                        <img alt="Fashion model wearing Design 009"
+                            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                            data-alt="Final shot of the collection t-shirt" src="images/image-9.png" />
+                    </div>
+                    <div class="text-center md:text-left px-2">
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">
+                            Design #009 — Final Cut</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">View Story</p>
+                    </div>
+                </a>
+            </section>
+        </main>
+        <!-- Minimalist Editorial Footer -->
+        <footer
+            class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-100 dark:border-gray-800 text-center">
+            <div class="flex flex-col items-center gap-10 max-w-xl mx-auto">
+                <h3 class="font-serif italic text-2xl">D-Shirts</h3>
+                <nav class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+                    <a class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-primary transition-colors"
+                        href="#">Archives</a>
+                    <a class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-primary transition-colors"
+                        href="#">About</a>
+                    <a class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-primary transition-colors"
+                        href="#">Contact</a>
+                </nav>
+                <div class="flex gap-8">
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#">
+                        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#">
+                        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                            <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-[10px] tracking-widest text-gray-400 font-medium">© 2024 D-SHIRTS LOOKBOOK</p>
+            </div>
+        </footer>
+        <!-- iOS Style Bottom Navigation Bar -->
+        <nav
+            class="fixed bottom-0 z-50 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 flex justify-around items-center pt-2 pb-6">
+            <a class="flex flex-col items-center gap-1 text-primary" href="#">
+                <span class="material-symbols-outlined text-2xl font-bold"
+                    style="font-variation-settings: 'FILL' 1;">home</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+                <span class="material-symbols-outlined text-2xl">grid_view</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+                <span class="material-symbols-outlined text-2xl">favorite</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+                <span class="material-symbols-outlined text-2xl">person</span>
+            </a>
+        </nav>
+    </div>
+</body>
+
+</html>
