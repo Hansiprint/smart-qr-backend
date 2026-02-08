@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>D-SHIRTS Dark System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ecc813",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#000000",
+                        "card-dark": "#111111",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    letterSpacing: {
+                        "widest": "3px",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            margin: 0;
+            color: white;
+        }
+
+        .blur-logo-bg {
+            filter: blur(5px);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display">
+
+    <!-- HERO SECTION (From Landing) -->
+    <section class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+        <!-- Layer 1: Background Blurred Logo -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-[80%] h-[80%] bg-center bg-no-repeat bg-contain blur-logo-bg"
+                style='background-image: url("logo.png");'>
+            </div>
+        </div>
+
+        <!-- Layer 2: Sharp Central Logo and Text -->
+        <div class="relative z-10 flex flex-col items-center text-center px-6">
+            <div class="mb-6 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                <img alt="D-SHIRTS Logo" class="w-48 h-auto" src="logo.png" />
+            </div>
+            <h1 class="text-white text-sm md:text-base font-light uppercase tracking-widest mb-12 opacity-90">
+                Collection Online
+            </h1>
+
+            <!-- CTA Button -->
+            <a class="group relative flex items-center justify-center" href="https://etsy.com" target="_blank">
+                <button
+                    class="relative flex min-w-[200px] items-center justify-center rounded-none border border-white bg-transparent px-8 py-4 text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-black">
+                    Shop on Etsy
+                </button>
+            </a>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-0 w-full flex flex-col items-center gap-4 animate-bounce">
+            <span class="material-symbols-outlined text-white/50">expand_more</span>
+        </div>
+    </section>
+
+    <!-- GRID SECTION (From Grid) -->
+    <section class="relative z-10 min-h-screen bg-black pt-20 pb-20">
+        <div class="text-center mb-16">
+            <h2 class="text-white text-2xl font-bold uppercase tracking-widest mb-2">The Dark Collection</h2>
+            <p class="text-[#888888] text-xs uppercase tracking-widest">System Active</p>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="px-4 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Product Card 1: Tired Lemon -->
+            <div
+                class="bg-card-dark/50 rounded-none overflow-hidden flex flex-col border border-white/10 hover:border-white/30 transition-colors duration-300">
+                <div class="relative aspect-[4/5] bg-neutral-900 group">
+                    <div class="absolute inset-0 bg-center bg-cover transition-transform duration-500 group-hover:scale-105"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHxVHrjEKitQdb3hUQ90wbrBOxYZSsEIlVCfZj5cKfSR3dGSC8XwkM7M6RHky6y17yGGmpcU3pZ3U0vSAXqVkx__UlBI_CKxou8TFoqquCRG5gqFeUY1Uw2Gjfs68H4SI7umfueKmduG1LTPQIzZbcBqsxNHbYqcTxbUk_c-KLuSoWKB5_h5sJAiYbUfhCvdCzPV1OcbxFym6WpI_F_Kje0od6CKKRwdt5X2ofgFHjFWEPMkzqrR3AW7QFkiJTFYMnfxv2kW_c7LA");'>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow items-center text-center">
+                    <h3 class="text-white text-lg font-bold uppercase mb-1 tracking-widest">Tired Lemon</h3>
+                    <p class="text-[#888888] text-xs uppercase mb-4">Organic Cotton</p>
+                    <a href="https://etsy.com" target="_blank"
+                        class="w-full py-3 border border-white text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                        Buy on Etsy
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 2: Gaming Squirrel -->
+            <div
+                class="bg-card-dark/50 rounded-none overflow-hidden flex flex-col border border-white/10 hover:border-white/30 transition-colors duration-300">
+                <div class="relative aspect-[4/5] bg-neutral-900 group">
+                    <div class="absolute inset-0 bg-center bg-cover transition-transform duration-500 group-hover:scale-105"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB7Q_GDx_1PsGK8oNmh9pKk18ZZu5LicOB9sj0qXoI-ah73puZruKbihb-Wumy4d_0km6KKr5ZBvQ7XWN2cvyAV4Gz0qS7Dx2ZAalmYo-7ymgogyL58VJiEpTW9dJg0aNw6Etla3FyD7nTzponCNmRLwRjgPtwSunAiJh792aIzTWAbu_5I8YMSdT_-nX6oGPO1ehDz0229j1QAKLDpOxu9Dng6RGyI3g_-1jOqY2NMa4yfr33aDHGpyYCK7pFVPWDHndvjiAkvskI");'>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow items-center text-center">
+                    <h3 class="text-white text-lg font-bold uppercase mb-1 tracking-widest">Gaming Squirrel</h3>
+                    <p class="text-[#888888] text-xs uppercase mb-4">Heavyweight</p>
+                    <a href="https://etsy.com" target="_blank"
+                        class="w-full py-3 border border-white text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                        Buy on Etsy
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 3: Neon Skull -->
+            <div
+                class="bg-card-dark/50 rounded-none overflow-hidden flex flex-col border border-white/10 hover:border-white/30 transition-colors duration-300">
+                <div class="relative aspect-[4/5] bg-neutral-900 group">
+                    <div class="absolute inset-0 bg-center bg-cover transition-transform duration-500 group-hover:scale-105"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwOyyiEbNHM0xAHDkwb6ajpia0JmrhdeuiqIwGF_yPmhVtocUnbgeefyv0YqP7AJL5wqQaIfbTXJ4ttjCogLo8s9F4_Gueg0IdIz8tRW6nZjo27pnqtHFzScXxkFon_FIOiPq8UMJGOUSlX4fIAxzrX6Carn4ww4Dc6uLtBoVMbR1acR0IzF94Vr3Am95MmT7ZKTeMxCvuQHf8tXfxLG_DYIjdTYGNicTqZHD7q8nXuvwXeWMwBisnapl9ms57Nc1hjd0ZOTbKHW4");'>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow items-center text-center">
+                    <h3 class="text-white text-lg font-bold uppercase mb-1 tracking-widest">Neon Skull</h3>
+                    <p class="text-[#888888] text-xs uppercase mb-4">Glitch Edition</p>
+                    <a href="https://etsy.com" target="_blank"
+                        class="w-full py-3 border border-white text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                        Buy on Etsy
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="py-10 text-center border-t border-white/10">
+        <p class="text-[#555] text-[10px] uppercase tracking-widest">D-Shirts by Daniel — Dark Edition</p>
+    </footer>
+
+</body>
+
+</html>
