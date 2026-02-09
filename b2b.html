@@ -538,13 +538,23 @@
             document.getElementById('hidden-sizes').value = sizesStr || "Nicht spezifiziert";
 
             // Service & Idea
+            // Service & Idea
             document.getElementById('hidden-service').value = isService ? "JA (+49 EUR)" : "NEIN";
             document.getElementById('hidden-idee').value = isService ? els.ideaDesc.value : "-";
 
+            // Style Reference
+            const styleRef = document.getElementById('design-reference').value;
+            document.getElementById('hidden-reference').value = (isService && styleRef !== 'none') ? styleRef : "Keine Vorlage";
+
             // AI Prompt
+            let promptBase = `Vector T-Shirt Design: ${els.ideaDesc.value.trim()}`;
+            if (isService && styleRef !== 'none') {
+                promptBase += `, BASED ON STYLE OF: ${styleRef}`;
+            }
+
             if (isService && els.ideaDesc.value.trim().length > 0) {
                 document.getElementById('hidden-prompt').value =
-                    `Vector T-Shirt Design: ${els.ideaDesc.value.trim()}, streetwear style, bold linework, isolated on white background, high detail, professional merch aesthetic.`;
+                    `${promptBase}, streetwear style, bold linework, IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, NO LETTERS, graphic elements only, isolated on white background.`;
             } else {
                 document.getElementById('hidden-prompt').value = "Kein Design-Service gebucht oder keine Beschreibung.";
             }
