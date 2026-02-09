@@ -172,6 +172,11 @@
                             <label class="block text-sm font-bold text-slate-700 mb-2">Beschreibe deine Idee</label>
                             <textarea id="idea-desc" rows="3" placeholder="Welches Motiv? Welche Farben? Welcher Text?"
                                 class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent text-sm"></textarea>
+                            <div id="ai-status"
+                                class="mt-2 text-xs text-slate-400 italic hidden flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[10px] animate-pulse">cached</span>
+                                System optimiert Beschreibung für Design-Abteilung...
+                            </div>
                         </div>
 
                         <div class="pt-4">
@@ -283,6 +288,7 @@
             designRadios: document.getElementsByName('designOpt'),
             ideaBox: document.getElementById('idea-box'),
             ideaDesc: document.getElementById('idea-desc'),
+            aiStatus: document.getElementById('ai-status'),
             uploadLabel: document.getElementById('upload-label'),
             designFeeRow: document.getElementById('design-fee-row'),
             product: document.getElementById('product'),
@@ -320,11 +326,13 @@
                     els.designFeeRow.classList.remove('hidden');
                     els.uploadLabel.textContent = "Lade hier Skizzen oder Logos zur Inspiration hoch (JPG/PNG ok)";
                     els.logoMsg.textContent = ""; // Clear existing warnings
+                    if (els.ideaDesc.value.length > 0) els.aiStatus.classList.remove('hidden');
                 } else {
                     els.ideaBox.classList.add('hidden');
                     els.designFeeRow.classList.add('hidden');
                     els.uploadLabel.textContent = "Logo-Upload (Check)";
                     els.logoMsg.textContent = "";
+                    els.aiStatus.classList.add('hidden');
                 }
                 validateLogo(els.logoUpload.files[0]); // Re-validate if file exists
                 calculate();
@@ -467,15 +475,29 @@
 
             const serviceText = isService ? `JA (+49 EUR) - Idee: ${els.ideaDesc.value}` : "NEIN (Druckdaten vorhanden)";
 
+            // Auto-Prompt Logic
+            let promptSection = "";
+            if (isService && els.ideaDesc.value.trim().length > 0) {
+                const generatedPrompt = `T-Shirt Vector Design, ${els.ideaDesc.value.trim()}, streetwear style, bold linework, high detail, isolated on white background, professional merch aesthetic`;
+                promptSection = `\n\n---------------------------------------\nINTERNAL SYSTEM DATA (READY FOR PRODUCTION): ${generatedPrompt}\n---------------------------------------`;
+            }
+
             const subject = encodeURIComponent(`Anfrage: ${qty}x ${productName.split('(')[0].trim()}`);
             const body = encodeURIComponent(
-                `Hallo D-Shirts Team,\n\nich bitte um ein unverbindliches Angebot für folgende Konfiguration:\n\nProdukt: ${productName}\nMenge: ${qty} Stück\nGrößenaufteilung: ${sizesStr || 'Bitte nachtragen'}\nVeredelung: ${refName}\nDesign-Service: ${serviceText}\nSponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}\n\nIndikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.\n\nBitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.\n\nMit freundlichen Grüßen`
+                `Hallo D-Shirts Team,\n\nich bitte um ein unverbindliches Angebot für folgende Konfiguration:\n\nProdukt: ${productName}\nMenge: ${qty} Stück\nGrößenaufteilung: ${sizesStr || 'Bitte nachtragen'}\nVeredelung: ${refName}\nDesign-Service: ${serviceText}\nSponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}\n\nIndikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.\n\nBitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.\n\nMit freundlichen Grüßen${promptSection}`
             );
             els.btn.href = `mailto:b2b@d-shirts.de?subject=${subject}&body=${body}`;
         }
 
         // Listen to textarea changes to update mailto link content dynamically if needed
-        els.ideaDesc.addEventListener('input', calculate);
+        els.ideaDesc.addEventListener('input', () => {
+            if (els.ideaDesc.value.length > 0) {
+                els.aiStatus.classList.remove('hidden');
+            } else {
+                els.aiStatus.classList.add('hidden');
+            }
+            calculate();
+        });
 
         // --- PDF Generation (jspdf) ---
         window.jsPDF = window.jspdf.jsPDF;
