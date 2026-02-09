@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        // Holen des Pfades (z.B. /smart-qr-backend/go/frisch)
+        var path = window.location.pathname;
+        // Die Weiterleitungs-Regeln (Hier pflegen wir die Kunden!)
+        var redirects = {
+            "frisch": "https://wikipedia.org",
+            "fred": "https://cafe-fred.de",
+            "test": "https://google.com"
+        };
+        // Prüfen, ob "/go/" im Pfad vorkommt
+        if (path.includes("/go/")) {
+            // Den Schlüsselbegriff extrahieren (das Wort nach /go/)
+            var parts = path.split("/go/");
+            var key = parts[1] ? parts[1].replace("/", "") : "";
+            // Wenn wir den Schlüssel kennen -> Weiterleiten
+            if (redirects[key]) {
+                window.location.replace(redirects[key]);
+            } else {
+                // Unbekannter Code -> Zurück zur Startseite (Lookbook)
+                window.location.replace("./index.html");
+            }
+        } else {
+            // Kein /go/ Link -> Zurück zur Startseite
+            window.location.replace("./index.html");
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
