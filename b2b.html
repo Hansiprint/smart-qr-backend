@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>D-Shirts B2B - Firmen & Vereine</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f172a", // Slate 900
+                        "accent": "#3b82f6", // Blue 500
+                        "background-light": "#f8fafc", // Slate 50
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-primary transition-colors duration-300">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Header -->
+        <nav
+            class="sticky top-0 z-50 flex items-center bg-white/90 backdrop-blur-md px-6 py-4 justify-between border-b border-gray-200">
+            <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
+                <span
+                    class="material-symbols-outlined text-primary text-[20px] transition-transform group-hover:-translate-x-1">arrow_back_ios</span>
+                <p class="text-gray-500 text-sm font-medium tracking-wide">Zurück zur Startseite</p>
+            </a>
+            <div class="font-bold tracking-widest text-primary">D-SHIRTS <span class="text-accent">B2B</span></div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="py-20 px-6 text-center bg-white">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-display tracking-tight">
+                Textildruck für <span class="text-accent underline decoration-4 decoration-accent/20">Profis</span>.
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Hochwertige Arbeitskleidung und Merchandise für Ihr Unternehmen oder Ihren Verein.
+                Faire Preise, Premium-Qualität und Express-Produktion.
+            </p>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="max-w-4xl mx-auto px-4 pb-20 w-full">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                <div class="bg-slate-900 p-6 text-white text-center">
+                    <h2 class="text-xl font-bold tracking-wide">Preiskalkulator</h2>
+                    <p class="text-slate-400 text-sm mt-1">Erstellen Sie Ihr unverbindliches Szenario</p>
+                </div>
+
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Inputs -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Produkt</label>
+                            <select id="product"
+                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
+                                <option value="15">Premium T-Shirt (15,00 €)</option>
+                                <option value="35">Organic Hoodie (35,00 €)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Menge (min. 10)</label>
+                            <input type="number" id="quantity" value="20" min="10"
+                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Veredelung</label>
+                            <select id="refinement"
+                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
+                                <option value="0">Nur Front-Druck (inkl.)</option>
+                                <option value="5">Front & Rücken (+ 5,00 €)</option>
+                            </select>
+                        </div>
+
+                        <div class="pt-4">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="sponsoring"
+                                    class="mt-1 rounded border-slate-300 text-accent focus:ring-accent">
+                                <span class="text-sm text-slate-600">
+                                    <strong class="text-slate-900 block">Sponsoring-Option aktivieren (-10%)</strong>
+                                    Wir drucken das D-SHIRTS Logo dezent auf den Ärmel.
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Result -->
+                    <div class="bg-slate-50 rounded-xl p-6 flex flex-col justify-between border border-slate-100">
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between text-slate-500">
+                                <span>Zwischensumme:</span>
+                                <span id="subtotal">0,00 €</span>
+                            </div>
+                            <div class="flex justify-between text-green-600 font-medium hidden" id="bulk-discount-row">
+                                <span>Mengenrabatt (15%):</span>
+                                <span id="bulk-discount">-0,00 €</span>
+                            </div>
+                            <div class="flex justify-between text-green-600 font-medium hidden"
+                                id="sponsoring-discount-row">
+                                <span>Sponsoring (10%):</span>
+                                <span id="sponsoring-discount">-0,00 €</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-200">
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-slate-600 font-medium">Gesamtpreis (netto)</span>
+                                <span id="total-price" class="text-3xl font-bold text-slate-900">0,00 €</span>
+                            </div>
+                            <div class="text-right text-xs text-slate-400 mb-6">zzgl. MwSt. und Versand</div>
+
+                            <a id="offer-btn" href="#"
+                                class="block w-full bg-accent hover:bg-blue-600 text-white text-center font-bold py-4 rounded-lg transition-colors shadow-lg shadow-blue-500/20">
+                                Unverbindliches Angebot anfordern
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Boxes -->
+        <section class="bg-slate-50 py-16 px-6 border-t border-slate-200">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Box 1 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
+                    <div
+                        class="w-12 h-12 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined">design_services</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">Gratis Grafik-Check</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Wir prüfen Ihre Vektordaten kostenlos auf
+                        Druckbarkeit und optimieren sie bei Bedarf.</p>
+                </div>
+                <!-- Box 2 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
+                    <div
+                        class="w-12 h-12 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined">qr_code_2</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">Nachbestell-Garantie</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Jeder Auftrag erhält einen QR-Code für
+                        blitzschnelle Nachbestellungen – auch für Einzelstücke.</p>
+                </div>
+                <!-- Box 3 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
+                    <div
+                        class="w-12 h-12 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined">rocket_launch</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">Express-Produktion</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Deadline im Nacken? Wir bieten
+                        48h-Express-Produktion für dringende Event-Aufträge.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-400 py-12 px-6 text-center text-sm">
+            <p>&copy; 2024 D-SHIRTS B2B Service. Alle Rechte vorbehalten.</p>
+        </footer>
+    </div>
+
+    <!-- Calculator Logic -->
+    <script>
+        const els = {
+            product: document.getElementById('product'),
+            quantity: document.getElementById('quantity'),
+            refinement: document.getElementById('refinement'),
+            sponsoring: document.getElementById('sponsoring'),
+            subtotal: document.getElementById('subtotal'),
+            bulkRow: document.getElementById('bulk-discount-row'),
+            bulkDiscount: document.getElementById('bulk-discount'),
+            sponsoringRow: document.getElementById('sponsoring-discount-row'),
+            sponsoringDiscount: document.getElementById('sponsoring-discount'),
+            total: document.getElementById('total-price'),
+            btn: document.getElementById('offer-btn')
+        };
+
+        function calculate() {
+            let qty = parseInt(els.quantity.value) || 0;
+            if (qty < 10) qty = 10; // Enforce visual min, though input has min attr
+
+            const productPrice = parseFloat(els.product.value);
+            const refPrice = parseFloat(els.refinement.value);
+
+            // Base Calculation
+            let subtotal = (productPrice + refPrice) * qty;
+
+            // Bulk Discount
+            let bulkDisc = 0;
+            if (qty >= 50) {
+                bulkDisc = subtotal * 0.15;
+                els.bulkRow.classList.remove('hidden');
+            } else {
+                els.bulkRow.classList.add('hidden');
+            }
+
+            // Sponsoring Discount (applied after bulk discount logic usually, or on subtotal? 
+            // Prompt says "automatic 15% off" + "-10% discount". Let's apply sequentially or accumulatively?
+            // "Ab 50 Stück 15% abziehen" implies new base. "Logo auf Ärmel -> -10%".
+            // Commonly stacked: (Base - Bulk) - Sponsoring.
+
+            let currentTotal = subtotal - bulkDisc;
+
+            let sponsorDisc = 0;
+            if (els.sponsoring.checked) {
+                sponsorDisc = currentTotal * 0.10;
+                els.sponsoringRow.classList.remove('hidden');
+            } else {
+                els.sponsoringRow.classList.add('hidden');
+            }
+
+            const finalTotal = currentTotal - sponsorDisc;
+
+            // Render
+            const fmt = (n) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+
+            els.subtotal.textContent = fmt(subtotal);
+            els.bulkDiscount.textContent = '-' + fmt(bulkDisc);
+            els.sponsoringDiscount.textContent = '-' + fmt(sponsorDisc);
+            els.total.textContent = fmt(finalTotal);
+
+            // Update Mailto Link
+            updateMailto(qty, productPrice, refPrice, els.sponsoring.checked, finalTotal);
+        }
+
+        function updateMailto(qty, pPrice, rPrice, isSponsoring, total) {
+            const productName = els.product.options[els.product.selectedIndex].text;
+            const refName = els.refinement.options[els.refinement.selectedIndex].text;
+
+            const subject = encodeURIComponent(`Anfrage: ${qty}x ${productName.split('(')[0].trim()}`);
+            const body = encodeURIComponent(
+                `Hallo D-Shirts Team,
+
+ich bitte um ein unverbindliches Angebot für folgende Konfiguration:
+
+Produkt: ${productName}
+Menge: ${qty} Stück
+Veredelung: ${refName}
+Sponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}
+
+Indikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.
+
+Bitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.
+
+Mit freundlichen Grüßen
+`);
+            els.btn.href = `mailto:b2b@d-shirts.de?subject=${subject}&body=${body}`;
+        }
+
+        // Listeners
+        [els.product, els.quantity, els.refinement, els.sponsoring].forEach(el => {
+            el.addEventListener('input', calculate);
+            el.addEventListener('change', calculate);
+        });
+
+        // Init
+        calculate();
+    </script>
+</body>
+
+</html>
