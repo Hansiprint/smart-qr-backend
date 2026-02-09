@@ -221,12 +221,38 @@
                             <div class="text-right text-xs text-slate-400 mb-6">zzgl. MwSt. und Versand</div>
 
                             <div class="space-y-3">
-                                <button id="offer-btn"
-                                    class="block w-full bg-accent hover:bg-blue-600 text-white text-center font-bold py-4 rounded-lg transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
-                                    Unverbindliches Angebot anfordern
-                                </button>
+                                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST" id="b2b-form"
+                                    class="w-full">
+                                    <input type="hidden" name="_subject" value="Neue B2B Anfrage (D-SHIRTS)">
+                                    <input type="hidden" name="_captcha" value="false">
+                                    <input type="hidden" name="_next"
+                                        value="https://hansiprint.github.io/smart-qr-backend/b2b.html">
+                                    <input type="hidden" name="_template" value="table">
+                                    <input type="hidden" name="Bestellmenge" id="hidden-menge">
+                                    <input type="hidden" name="Größenaufteilung" id="hidden-sizes">
+                                    <input type="hidden" name="Produktart" id="hidden-produkt">
+                                    <input type="hidden" name="Veredelung" id="hidden-veredelung">
+                                    <input type="hidden" name="Kalkulierter_Preis" id="hidden-preis">
+                                    <input type="hidden" name="Design_Service_Gebucht" id="hidden-service">
+                                    <input type="hidden" name="Kunden_Idee_Beschreibung" id="hidden-idee">
+                                    <input type="hidden" name="SYSTEM_KI_PROMPT" id="hidden-prompt">
+
+                                    <div class="mt-4 p-5 bg-slate-50 border border-slate-200 rounded-lg">
+                                        <h3 class="font-bold text-slate-800 mb-3 text-center">Angebot jetzt anfordern
+                                        </h3>
+                                        <div class="flex gap-2">
+                                            <input type="email" name="email" required placeholder="Deine E-Mail-Adresse"
+                                                class="w-full p-3 border border-slate-300 rounded-lg focus:ring-accent focus:border-accent text-sm">
+                                            <button type="submit" id="submit-btn"
+                                                class="bg-black hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
+                                                ANFRAGEN
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
                                 <button id="pdf-btn"
-                                    class="block w-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-center font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    class="block w-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-center font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mt-3">
                                     <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
                                     Offizielles Angebot als PDF laden
                                 </button>
@@ -301,7 +327,7 @@
             sponsoringRow: document.getElementById('sponsoring-discount-row'),
             sponsoringDiscount: document.getElementById('sponsoring-discount'),
             total: document.getElementById('total-price'),
-            btn: document.getElementById('offer-btn'),
+            submitBtn: document.getElementById('submit-btn'),
             pdfBtn: document.getElementById('pdf-btn'),
             logoUpload: document.getElementById('logo-upload'),
             logoMsg: document.getElementById('logo-msg'),
@@ -387,15 +413,15 @@
 
             if (currentSum === totalQty) {
                 els.sizeValidationMsg.innerHTML = `<span class="text-green-600 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts (Perfekt)</span>`;
-                els.btn.disabled = false;
+                els.submitBtn.disabled = false;
                 els.pdfBtn.disabled = false;
-                els.btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                els.submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 els.pdfBtn.classList.remove('opacity-50', 'cursor-not-allowed');
             } else {
                 els.sizeValidationMsg.innerHTML = `<span class="text-red-500 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts</span>`;
-                els.btn.disabled = true;
+                els.submitBtn.disabled = true;
                 els.pdfBtn.disabled = true;
-                els.btn.classList.add('opacity-50', 'cursor-not-allowed');
+                els.submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
                 els.pdfBtn.classList.add('opacity-50', 'cursor-not-allowed');
             }
         }
@@ -458,36 +484,43 @@
             els.sponsoringDiscount.textContent = '-' + fmt(sponsorDisc);
             els.total.textContent = fmt(finalTotal);
 
-            updateMailto(qty, productPrice, refPrice, els.sponsoring.checked, finalTotal, isService);
+            // Removed Mailto logic, handled by form submission now
             updateSizeSplitter(); // Re-validate size split on qty change
         }
 
-        function updateMailto(qty, pPrice, rPrice, isSponsoring, total, isService) {
+        // --- Form Submission Logic ---
+        document.getElementById('b2b-form').addEventListener('submit', function (e) {
+            // Populate Hidden Fields
+            const isService = checkDesignService();
             const productName = els.product.options[els.product.selectedIndex].text;
             const refName = els.refinement.options[els.refinement.selectedIndex].text;
 
+            document.getElementById('hidden-menge').value = els.quantity.value || 0;
+            document.getElementById('hidden-produkt').value = productName;
+            document.getElementById('hidden-veredelung').value = refName;
+            document.getElementById('hidden-preis').value = els.total.textContent || '0,00 €';
+
+            // Sizes
             let sizesStr = "";
             els.sizeInputs.forEach(input => {
                 const val = parseInt(input.value) || 0;
                 if (val > 0) sizesStr += `${input.dataset.size}: ${val}, `;
             });
             if (sizesStr) sizesStr = sizesStr.slice(0, -2);
+            document.getElementById('hidden-sizes').value = sizesStr || "Nicht spezifiziert";
 
-            const serviceText = isService ? `JA (+49 EUR) - Idee: ${els.ideaDesc.value}` : "NEIN (Druckdaten vorhanden)";
+            // Service & Idea
+            document.getElementById('hidden-service').value = isService ? "JA (+49 EUR)" : "NEIN";
+            document.getElementById('hidden-idee').value = isService ? els.ideaDesc.value : "-";
 
-            // Auto-Prompt Logic
-            let promptSection = "";
+            // AI Prompt
             if (isService && els.ideaDesc.value.trim().length > 0) {
-                const generatedPrompt = `T-Shirt Vector Design, ${els.ideaDesc.value.trim()}, streetwear style, bold linework, high detail, isolated on white background, professional merch aesthetic`;
-                promptSection = `\n\n---------------------------------------\nINTERNAL SYSTEM DATA (READY FOR PRODUCTION): ${generatedPrompt}\n---------------------------------------`;
+                document.getElementById('hidden-prompt').value =
+                    `Vector T-Shirt Design: ${els.ideaDesc.value.trim()}, streetwear style, bold linework, isolated on white background, high detail, professional merch aesthetic.`;
+            } else {
+                document.getElementById('hidden-prompt').value = "Kein Design-Service gebucht oder keine Beschreibung.";
             }
-
-            const subject = encodeURIComponent(`Anfrage: ${qty}x ${productName.split('(')[0].trim()}`);
-            const body = encodeURIComponent(
-                `Hallo D-Shirts Team,\n\nich bitte um ein unverbindliches Angebot für folgende Konfiguration:\n\nProdukt: ${productName}\nMenge: ${qty} Stück\nGrößenaufteilung: ${sizesStr || 'Bitte nachtragen'}\nVeredelung: ${refName}\nDesign-Service: ${serviceText}\nSponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}\n\nIndikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.\n\nBitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.\n\nMit freundlichen Grüßen${promptSection}`
-            );
-            els.btn.href = `mailto:b2b@d-shirts.de?subject=${subject}&body=${body}`;
-        }
+        });
 
         // Listen to textarea changes to update mailto link content dynamically if needed
         els.ideaDesc.addEventListener('input', () => {
@@ -496,7 +529,6 @@
             } else {
                 els.aiStatus.classList.add('hidden');
             }
-            calculate();
         });
 
         // --- PDF Generation (jspdf) ---
