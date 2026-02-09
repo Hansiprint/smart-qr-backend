@@ -5,12 +5,13 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Product Story - Cyber Core</title>
+    <title>Product Story - Design #004</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -21,12 +22,13 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#1754cf",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#111621",
+                        "primary": "#141414",
+                        "accent-rage": "#b91c1c",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
                     },
                     fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"]
+                        "display": ["Newsreader", "serif"]
                     },
                     borderRadius: {
                         "DEFAULT": "1rem",
@@ -39,12 +41,13 @@
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        body {
+            font-family: 'Newsreader', serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        body {
-            -webkit-tap-highlight-color: transparent;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
     </style>
     <style>
@@ -54,63 +57,91 @@
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display antialiased">
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Navigation Header -->
-        <nav class="flex items-center justify-between px-6 py-4 pt-8">
-            <a class="flex items-center gap-2 group" href="index.html">
-                <span class="material-symbols-outlined text-[#0e121b] dark:text-white text-xl">
-                    arrow_back
-                </span>
+<body
+    class="bg-background-light dark:bg-background-dark text-primary dark:text-neutral-100 transition-colors duration-300">
+    <!-- Main Container -->
+    <div class="relative flex h-auto min-h-screen w-full flex-col max-w-md mx-auto overflow-x-hidden">
+        <!-- Top Navigation Bar -->
+        <nav
+            class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 justify-between">
+            <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
                 <span
-                    class="text-[#0e121b]/60 dark:text-white/60 text-sm font-medium tracking-tight group-hover:text-primary transition-colors">
-                    Zurück zur Kollektion
+                    class="material-symbols-outlined text-primary dark:text-neutral-100 text-[20px] transition-transform group-hover:-translate-x-1">
+                    arrow_back_ios
                 </span>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm font-medium leading-normal tracking-wide">
+                    Zurück zur Kollektion
+                </p>
             </a>
-            <div class="w-6"></div> <!-- Spacer for optical balance -->
+            <div class="flex size-10 items-center justify-end">
+                <span class="material-symbols-outlined text-primary dark:text-neutral-100">
+                    share
+                </span>
+            </div>
         </nav>
         <!-- Hero Image Section -->
-        <main class="flex-grow flex flex-col items-center">
-            <div class="w-full px-4 @container">
+        <main class="flex-1">
+            <div class="@container px-4 py-2">
                 <div class="relative w-full aspect-[3/4] overflow-hidden rounded-xl bg-neutral-200 dark:bg-neutral-800">
-                    <img class="h-full w-full object-cover object-center"
+                    <img alt="Design #004 T-Shirt" class="h-full w-full object-cover object-center"
                         data-alt="Minimalist T-shirt design Cyber Core with digital precision patterns"
                         src="images/image-4.png" />
                 </div>
             </div>
-            <!-- Content Section -->
-            <div class="max-w-xl w-full px-8 py-10 flex flex-col items-center text-center">
-                <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-4">
-                    Design #004
+            <!-- Narrative Content Section -->
+            <section class="px-8 pt-10 pb-32">
+                <span
+                    class="text-xs font-bold uppercase tracking-[0.2em] text-accent-rage/60 dark:text-red-400/60 block mb-2">
+                    Edition No. 004
                 </span>
-                <h1 class="text-primary dark:text-white text-5xl font-display font-bold leading-tight mb-8">
+                <h1 class="text-primary dark:text-white text-4xl font-display font-medium leading-tight mb-6">
                     Wütendes Eichhörnchen
                 </h1>
                 <div class="space-y-6">
-                    <p class="text-[#0e121b]/80 dark:text-white/80 text-lg leading-relaxed font-light">
-                        Es kocht innerlich, aber die Fassade steht. Eine Studie über unterdrückte Wut in flauschiger
-                        Form.
+                    <p class="text-primary dark:text-neutral-200 text-xl font-display italic leading-relaxed">
+                        "Es kocht innerlich, aber die Fassade steht. Eine Studie über unterdrückte Wut."
                     </p>
-                    <p class="text-[#0e121b]/80 dark:text-white/80 text-lg leading-relaxed font-light">
+                    <p class="text-neutral-600 dark:text-neutral-400 text-lg font-display leading-relaxed">
                         Es ist wütend, will es aber absolut nicht zugeben. Für Tage, an denen man einfach nur nicken und
                         lächeln möchte, während man innerlich schreit.
+                        Ein Design für den stillen Protest im Alltag.
                     </p>
                 </div>
-                <!-- Call to Action -->
-                <div class="mt-12 w-full max-w-xs">
-                    <button
-                        class="w-full bg-primary hover:bg-primary/90 text-white rounded-full py-5 px-10 text-sm font-bold tracking-[0.15em] transition-all transform active:scale-95 shadow-lg shadow-primary/20">
-                        KAUFEN
-                    </button>
+                <!-- Product Details List (Subtle) -->
+                <div class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+                    <div class="flex justify-between items-center text-sm font-display">
+                        <span class="text-neutral-400">Material</span>
+                        <span class="text-primary dark:text-neutral-200">100% Bio-Baumwolle</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm font-display">
+                        <span class="text-neutral-400">Passform</span>
+                        <span class="text-primary dark:text-neutral-200">Regular Fit</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm font-display">
+                        <span class="text-neutral-400">Druck</span>
+                        <span class="text-primary dark:text-neutral-200">Siebdruck Soft-Touch</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Footer Spacing -->
-            <div class="h-16"></div>
+            </section>
         </main>
-        <!-- Subtle Floating Elements for Premium Feel -->
-        <div class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
-            <div class="w-px h-12 bg-[#0e121b] dark:bg-white"></div>
-        </div>
+        <!-- Bottom Sticky Action Bar -->
+        <footer
+            class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-neutral-100 dark:border-neutral-800 px-6 py-6 pb-10">
+            <div class="flex items-center justify-between gap-6">
+                <div class="flex flex-col">
+                    <span class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">Preis</span>
+                    <span class="text-xl font-display font-bold text-primary dark:text-white">$85.00</span>
+                </div>
+                <button
+                    class="flex-1 flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 bg-primary dark:bg-neutral-100 text-white dark:text-primary text-base font-bold leading-normal tracking-wide transition-transform active:scale-95 shadow-lg shadow-accent-rage/10 hover:bg-accent-rage hover:text-white dark:hover:bg-accent-rage dark:hover:text-white transition-colors duration-300">
+                    <span class="truncate">Jetzt Kaufen</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+    <!-- Background Decorative Element -->
+    <div
+        class="fixed inset-0 pointer-events-none z-[-1] bg-gradient-to-b from-white to-red-50/20 dark:from-neutral-900 dark:to-red-900/10 opacity-50">
     </div>
 </body>
 
