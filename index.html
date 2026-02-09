@@ -72,51 +72,28 @@
             </section>
         </main>
 
-        <!-- Story Modal -->
-        <div id="story-modal"
-            class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <div
-                class="bg-white dark:bg-[#1a0b0d] w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl relative flex flex-col">
-                <button onclick="closeModal()"
-                    class="absolute top-4 right-4 z-10 p-2 bg-white/10 rounded-full hover:bg-white/20 text-white mix-blend-difference">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
-                <div class="relative w-full aspect-[4/5]">
-                    <img id="modal-image" src="" class="absolute inset-0 w-full h-full object-cover">
-                </div>
-                <div class="p-8 text-center space-y-6">
-                    <p id="modal-subtitle" class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Design
-                        Story</p>
-                    <h2 id="modal-title" class="text-3xl font-serif italic text-primary dark:text-white"></h2>
-                    <p id="modal-text" class="text-lg leading-relaxed text-gray-600 dark:text-gray-300"></p>
-                    <button
-                        class="w-full py-4 bg-[#1b0d10] text-white uppercase tracking-[0.2em] text-sm font-bold rounded-full hover:opacity-90 transition-opacity">
-                        In den Warenkorb
-                    </button>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 
     <script>
         // Story Data embedded directly for SPA functionality
         const stories = [
-            { id: 1, title: "Teuto Hase", img: "./images/image-1.png", text: "\"Gemeinsam stark am Teutoburger Wald.\" Entworfen für Firmenläufe und Teams, die zusammen durchs Ziel gehen wollen. Dynamik, Zusammenhalt und Spaß an der Bewegung." },
-            { id: 2, title: "Mango & Chilli", img: "./images/image-2.png", text: "\"Ein perfekter Urlaubsabend unter Freunden.\" Süße Mango trifft feurigen Chilli. Zwei Charaktere, die den Sonnenuntergang genießen. Entspannt, würzig und voller Freude." },
-            { id: 3, title: "Urlaubszitrone", img: "./images/image-3.png", text: "Wenn die Sonne brennt und das Leben süß-sauer ist. Diese Zitrone gibt alles – und schwitzt dabei. Ein humorvoller Begleiter für heiße Tage und Strandbars." },
-            { id: 4, title: "Wütendes Eichhörnchen", img: "./images/image-4.png", text: "Es kocht innerlich, aber die Fassade steht. Eine Studie über unterdrückte Wut in flauschiger Form. Für Tage, an denen man einfach nur nicken und lächeln möchte." },
-            { id: 5, title: "Der Igel", img: "./images/image-5.png", text: "\"Präzision auf den Punkt gebracht.\" Stachelig gegen Ablenkungen, scharf im Fokus. Perfekt für Bogenschießvereine oder alle, die ihre Ziele fest im Blick haben." },
-            { id: 6, title: "Teuto Hase (Mono)", img: "./images/image-6.png", text: "\"Die klassische Edition.\" Reduziert auf das Wesentliche: Form, Kontrast und Charakter. Zeitloses Schwarz-Weiß. Schlichte Eleganz für den Team-Spirit." },
-            { id: 7, title: "Fluchendes Eichhörnchen", img: "./images/image-7.png", text: "Teil der CENSORED Collection. Wenn Worte fehlen, übernehmen die Symbole. Manchmal läuft es einfach nicht rund – sprich es aus, aber jugendfrei." },
-            { id: 8, title: "Cooler Bagel", img: "./images/image-8.png", text: "Mehr als nur ein Snack. Dieser Bagel hat Style und eine Verbindung zur digitalen Welt. Scan den QR-Code. Fashion trifft Foodie-Culture." },
-            { id: 9, title: "Cooles Hörnchen", img: "./images/image-9.png", text: "Bereit für die Zukunft. Ausgestattet mit einem QR-Code verbindet es Natur mit moderner Technik. Ein interaktives Statement. Scan it, love it." }
+            { id: 1, title: "Teuto Hase", img: "./images/image-1.png", link: "teuto-hase.html", text: "\"Gemeinsam stark am Teutoburger Wald.\" Entworfen für Firmenläufe und Teams, die zusammen durchs Ziel gehen wollen. Dynamik, Zusammenhalt und Spaß an der Bewegung." },
+            { id: 2, title: "Mango & Chilli", img: "./images/image-2.png", link: "mango-chilli.html", text: "\"Ein perfekter Urlaubsabend unter Freunden.\" Süße Mango trifft feurigen Chilli. Zwei Charaktere, die den Sonnenuntergang genießen. Entspannt, würzig und voller Freude." },
+            { id: 3, title: "Urlaubszitrone", img: "./images/image-3.png", link: "urlaubszitrone.html", text: "Wenn die Sonne brennt und das Leben süß-sauer ist. Diese Zitrone gibt alles – und schwitzt dabei. Ein humorvoller Begleiter für heiße Tage und Strandbars." },
+            { id: 4, title: "Wütendes Eichhörnchen", img: "./images/image-4.png", link: "wuetendes-eichhoernchen.html", text: "Es kocht innerlich, aber die Fassade steht. Eine Studie über unterdrückte Wut in flauschiger Form. Für Tage, an denen man einfach nur nicken und lächeln möchte." },
+            { id: 5, title: "Der Igel", img: "./images/image-5.png", link: "igel.html", text: "\"Präzision auf den Punkt gebracht.\" Stachelig gegen Ablenkungen, scharf im Fokus. Perfekt für Bogenschießvereine oder alle, die ihre Ziele fest im Blick haben." },
+            { id: 6, title: "Teuto Hase (Mono)", img: "./images/image-6.png", link: "teuto-hase-mono.html", text: "\"Die klassische Edition.\" Reduziert auf das Wesentliche: Form, Kontrast und Charakter. Zeitloses Schwarz-Weiß. Schlichte Eleganz für den Team-Spirit." },
+            { id: 7, title: "Fluchendes Eichhörnchen", img: "./images/image-7.png", link: "fluchendes-eichhoernchen.html", text: "Teil der CENSORED Collection. Wenn Worte fehlen, übernehmen die Symbole. Manchmal läuft es einfach nicht rund – sprich es aus, aber jugendfrei." },
+            { id: 8, title: "Cooler Bagel", img: "./images/image-8.png", link: "bagel.html", text: "Mehr als nur ein Snack. Dieser Bagel hat Style und eine Verbindung zur digitalen Welt. Scan den QR-Code. Fashion trifft Foodie-Culture." },
+            { id: 9, title: "Cooles Hörnchen", img: "./images/image-9.png", link: "cooles-hoernchen.html", text: "Bereit für die Zukunft. Ausgestattet mit einem QR-Code verbindet es Natur mit moderner Technik. Ein interaktives Statement. Scan it, love it." }
         ];
 
         // Render Grid
         const gridContainer = document.querySelector('section');
         gridContainer.innerHTML = stories.map(story => `
-            <div onclick="openModal(${story.id})" class="group cursor-pointer flex flex-col gap-4">
+            <a href="${story.link}" class="group cursor-pointer flex flex-col gap-4 block">
                 <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 rounded-lg">
                     <img src="${story.img}" alt="${story.title}" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
                 </div>
@@ -124,43 +101,8 @@
                     <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">${story.title}</p>
                     <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Story ansehen</p>
                 </div>
-            </div>
+            </a>
         `).join('');
-
-        // Modal Logic
-        const modal = document.getElementById('story-modal');
-        const modalImg = document.getElementById('modal-image');
-        const modalTitle = document.getElementById('modal-title');
-        const modalText = document.getElementById('modal-text');
-
-        function openModal(id) {
-            const story = stories.find(s => s.id === id);
-            if (!story) return;
-
-            modalImg.src = story.img;
-            modalTitle.innerText = story.title;
-            modalText.innerText = story.text;
-
-            modal.classList.remove('hidden');
-            // Small timeout to allow display:block to apply before opacity transition
-            requestAnimationFrame(() => {
-                modal.classList.add('visible');
-            });
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-
-        function closeModal() {
-            modal.classList.remove('visible');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300); // Match CSS transition duration
-            document.body.style.overflow = '';
-        }
-
-        // Close on outside click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
     </script>
 </body>
 <!-- Cache Buster: 2026-02-09 15:18:40 -->
