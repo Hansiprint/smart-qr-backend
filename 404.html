@@ -4,6 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Redirecting...</title>
+    <style>
+        body {
+            background-color: #000033;
+            /* Dark Blue for Visual Confirmation */
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
     <script>
         var path = window.location.pathname;
         var redirects = {
@@ -18,15 +31,18 @@
             if (redirects[key]) {
                 window.location.replace(redirects[key]);
             } else {
-                window.location.replace("./index.html");
+                // WICHTIG: Absolute Pfad nutzen
+                window.location.replace("/smart-qr-backend/index.html");
             }
         } else {
-            window.location.replace("./index.html");
+            // Kein /go/ Link -> Zurück zur Startseite
+            window.location.replace("/smart-qr-backend/index.html");
         }
     </script>
 </head>
 
 <body>
+    <p>Redirecting V5.0 (Fred Fix)...</p>
 </body>
 
 </html>
