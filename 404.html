@@ -23,11 +23,12 @@
                 window.location.replace(redirects[key]);
             } else {
                 // Unbekannter Code -> Zurück zur Startseite (Lookbook)
-                window.location.replace("./index.html");
+                // WICHTIG: Absolute Pfad nutzen, da wir uns im Unterordner /go/ befinden könnten
+                window.location.replace("/smart-qr-backend/index.html");
             }
         } else {
             // Kein /go/ Link -> Zurück zur Startseite
-            window.location.replace("./index.html");
+            window.location.replace("/smart-qr-backend/index.html");
         }
     </script>
 </head>
