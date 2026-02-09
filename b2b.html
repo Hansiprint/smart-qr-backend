@@ -208,102 +208,99 @@
                                         </div>
                                     </label>
 
-                                    <!-- Dynamic Options from Images Folder -->
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-1.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-1.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-1</span>
-                                    </label>
+                                    <!-- Dynamic Options from Images Folder (Hardcoded for this task) -->
+                                    <div id="style-grid-container"
+                                        class="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-2">
+                                        <!-- Image 1 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-1.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-1.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-1</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-2.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-2.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-2</span>
-                                    </label>
+                                        <!-- Image 2 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-2.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-2.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-2</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-3.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-3.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-3</span>
-                                    </label>
+                                        <!-- Image 3 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-3.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-3.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-3</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-4.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-4.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-4</span>
-                                    </label>
+                                        <!-- Image 4 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-4.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-4.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-4</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-5.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-5.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-5</span>
-                                    </label>
+                                        <!-- Image 5 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-5.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-5.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-5</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-6.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-6.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-6</span>
-                                    </label>
+                                        <!-- Image 6 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-6.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-6.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-6</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-7.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-7.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-7</span>
-                                    </label>
+                                        <!-- Image 7 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-7.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-7.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-7</div>
+                                        </label>
 
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="image-9.png"
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24">
-                                            <img src="./images/image-9.png" alt="Style Option"
-                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                                        </div>
-                                        <span
-                                            class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 truncate text-center opacity-0 group-hover:opacity-100 transition-opacity">image-9</span>
-                                    </label>
+                                        <!-- Image 8 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-8.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-8.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-8</div>
+                                        </label>
+
+                                        <!-- Image 9 -->
+                                        <label class="visual-option"
+                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
+                                            <input type="radio" name="style_selection_visual" value="image-9.png"
+                                                onchange="updateStyleReference(this)" style="display: none;">
+                                            <img src="./images/image-9.png"
+                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
+                                            <div style="font-size: 10px; margin-top: 2px;">image-9</div>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -630,6 +627,25 @@
             updateSizeSplitter(); // Re-validate size split on qty change
         }
 
+        // --- Visual Picker Logic ---
+        function updateStyleReference(input) {
+            const val = input.value;
+            // Visual Style Logic
+            // Reset all borders
+            document.querySelectorAll('input[name="style_selection_visual"]').forEach(radio => {
+                const img = radio.parentElement.querySelector('img');
+                if (img) img.style.border = '2px solid #eee';
+            });
+            // highlight current
+            const currentImg = input.parentElement.querySelector('img');
+            if (currentImg) {
+                currentImg.style.border = '3px solid black';
+            }
+
+            document.getElementById('hidden-reference').value = val !== 'none' ? val : "Keine Vorlage";
+            calculate(); // Re-trigger potentially needed updates
+        }
+
         // --- Form Submission Logic ---
         document.getElementById('b2b-form').addEventListener('submit', function (e) {
             // Populate Hidden Fields
@@ -652,12 +668,14 @@
             document.getElementById('hidden-sizes').value = sizesStr || "Nicht spezifiziert";
 
             // Service & Idea
-            // Service & Idea
             document.getElementById('hidden-service').value = isService ? "JA (+49 EUR)" : "NEIN";
             document.getElementById('hidden-idee').value = isService ? els.ideaDesc.value : "-";
 
-            // Style Reference
-            const styleRef = document.getElementById('design-reference').value;
+            // Style Reference (Already updated by onchange, but double check default)
+            let styleRef = "none";
+            const checkedRadio = document.querySelector('input[name="style_selection_visual"]:checked');
+            if (checkedRadio) styleRef = checkedRadio.value;
+
             document.getElementById('hidden-reference').value = (isService && styleRef !== 'none') ? styleRef : "Keine Vorlage";
 
             // AI Prompt
@@ -666,20 +684,24 @@
                 promptBase += `, BASED ON STYLE OF: ${styleRef}`;
             }
 
+            const suffix = "... IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, NO LETTERS, graphic elements only, isolated on white background.";
+
             if (isService && els.ideaDesc.value.trim().length > 0) {
                 document.getElementById('hidden-prompt').value =
-                    `${promptBase}, streetwear style, bold linework, IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, NO LETTERS, graphic elements only, isolated on white background.`;
+                    `${promptBase}, streetwear style, bold linework ${suffix}`;
             } else {
-                document.getElementById('hidden-prompt').value = "Kein Design-Service gebucht oder keine Beschreibung.";
-            }
-        });
-
-        // Listen to textarea changes to update mailto link content dynamically if needed
-        els.ideaDesc.addEventListener('input', () => {
-            if (els.ideaDesc.value.length > 0) {
-                els.aiStatus.classList.remove('hidden');
-            } else {
-                els.aiStatus.classList.add('hidden');
+                // Even if no specific description, we might want to attach the suffix if there's any content?
+                // User Requirement: "Egal was der Kunde eingibt, der generierte String für mich MUSS am Ende diesen Zusatz haben: ..."
+                // So we should append it to whatever we generate, or even if empty?
+                // "Kein Design-Service gebucht oder keine Beschreibung." -> probably doesn't make sense here.
+                // But let's apply it when generating a prompt.
+                if (isService) {
+                    // If service is booked but no description, we still might want the style ref + suffix?
+                    // Let's assume promptBase is what we have.
+                    document.getElementById('hidden-prompt').value = `${promptBase} ${suffix}`;
+                } else {
+                    document.getElementById('hidden-prompt').value = "Kein Design-Service gebucht.";
+                }
             }
         });
 
