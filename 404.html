@@ -3,84 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Redirect Debugger</title>
+    <title>Redirecting...</title>
+    <!-- Cache Buster Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <style>
         body {
-            background-color: #222;
-            color: #0f0;
-            /* Matrix Green for Debugging */
-            font-family: monospace;
-            padding: 2rem;
-            line-height: 1.5;
-        }
-
-        .info {
-            border: 1px solid #444;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: #111;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
         }
     </style>
-</head>
-
-<body>
-    <h1>404 Redirect Debugger V6</h1>
-    <div class="info">
-        <p><strong>Path:</strong> <span id="path-out">...</span></p>
-        <p><strong>Extracted Key:</strong> <span id="key-out">...</span></p>
-        <p><strong>Target URL:</strong> <span id="target-out">...</span></p>
-        <p><strong>Status:</strong> <span id="status-out">Analyzing...</span></p>
-    </div>
-
     <script>
+        // Version 7.0 - Production Clean
         var path = window.location.pathname;
-        document.getElementById('path-out').innerText = path;
-
         var redirects = {
             "frisch": "https://de.wikipedia.org/wiki/Frische",
             "fred": "https://cafefred.de/",
             "test": "https://google.com"
         };
 
-        var key = "";
-        var target = "";
-
         // Robust Parsing Logic
         if (path.toLowerCase().includes("/go/")) {
-            var parts = path.split(/\/go\//i); // Case insensitive split
+            var parts = path.split(/\/go\//i);
             if (parts[1]) {
-                // Remove trailing slash, lowercase, limit chars
-                key = parts[1].replace(/\/$/, "").toLowerCase().trim();
-                document.getElementById('key-out').innerText = "'" + key + "'";
+                var key = parts[1].replace(/\/$/, "").toLowerCase().trim();
 
                 if (redirects[key]) {
-                    target = redirects[key];
-                    document.getElementById('target-out').innerText = target;
-                    document.getElementById('status-out').innerText = "Redirecting in 2 seconds...";
-
-                    // Delay to allow reading debug info
-                    setTimeout(function () {
-                        window.location.replace(target);
-                    }, 2000);
+                    // Direct replace
+                    window.location.replace(redirects[key]);
                 } else {
-                    document.getElementById('status-out').innerText = "KEY NOT FOUND IN DATABASE. Fallback to Home in 5s.";
-                    setTimeout(function () {
-                        window.location.replace("/smart-qr-backend/index.html");
-                    }, 5000);
+                    // Fallback to absolute index path
+                    window.location.replace("/smart-qr-backend/index.html");
                 }
             } else {
-                document.getElementById('status-out').innerText = "NO KEY FOUND AFTER /go/. Fallback in 5s.";
-                setTimeout(function () {
-                    window.location.replace("/smart-qr-backend/index.html");
-                }, 5000);
+                window.location.replace("/smart-qr-backend/index.html");
             }
         } else {
-            document.getElementById('status-out').innerText = "NOT A /go/ LINK. Fallback in 3s.";
-            setTimeout(function () {
-                window.location.replace("/smart-qr-backend/index.html");
-            }, 3000);
+            window.location.replace("/smart-qr-backend/index.html");
         }
     </script>
+</head>
+
+<body>
+    <p>Loading...</p>
 </body>
 
 </html>
