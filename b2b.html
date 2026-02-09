@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>D-Shirts B2B - Firmen & Vereine</title>
+    <title>D-SHIRTS B2B - Firmen & Vereine</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
@@ -98,6 +99,37 @@
                                 class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
                         </div>
 
+                        <!-- Size Splitter -->
+                        <div id="size-splitter" class="bg-slate-50 p-4 rounded-lg border border-slate-200 hidden">
+                            <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wider">Größen
+                                verteilen</label>
+                            <div class="grid grid-cols-5 gap-2 mb-2">
+                                <div class="text-center"><label class="text-[10px] text-slate-400">S</label><input
+                                        type="number" min="0" data-size="S"
+                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
+                                </div>
+                                <div class="text-center"><label class="text-[10px] text-slate-400">M</label><input
+                                        type="number" min="0" data-size="M"
+                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
+                                </div>
+                                <div class="text-center"><label class="text-[10px] text-slate-400">L</label><input
+                                        type="number" min="0" data-size="L"
+                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
+                                </div>
+                                <div class="text-center"><label class="text-[10px] text-slate-400">XL</label><input
+                                        type="number" min="0" data-size="XL"
+                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
+                                </div>
+                                <div class="text-center"><label class="text-[10px] text-slate-400">XXL</label><input
+                                        type="number" min="0" data-size="XXL"
+                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
+                                </div>
+                            </div>
+                            <div id="size-validation-msg" class="text-xs text-center font-medium text-slate-500">
+                                Verteilt: 0 von <span id="target-qty">20</span> Shirts
+                            </div>
+                        </div>
+
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Veredelung</label>
                             <select id="refinement"
@@ -105,6 +137,14 @@
                                 <option value="0">Nur Front-Druck (inkl.)</option>
                                 <option value="5">Front & Rücken (+ 5,00 €)</option>
                             </select>
+                        </div>
+
+                        <!-- Logo Check -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Logo-Upload (Check)</label>
+                            <input type="file" id="logo-upload"
+                                class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-accent hover:file:bg-blue-100 transition-colors cursor-pointer" />
+                            <div id="logo-msg" class="mt-2 text-xs font-medium min-h-[1.5em]"></div>
                         </div>
 
                         <div class="pt-4">
@@ -144,10 +184,17 @@
                             </div>
                             <div class="text-right text-xs text-slate-400 mb-6">zzgl. MwSt. und Versand</div>
 
-                            <a id="offer-btn" href="#"
-                                class="block w-full bg-accent hover:bg-blue-600 text-white text-center font-bold py-4 rounded-lg transition-colors shadow-lg shadow-blue-500/20">
-                                Unverbindliches Angebot anfordern
-                            </a>
+                            <div class="space-y-3">
+                                <button id="offer-btn"
+                                    class="block w-full bg-accent hover:bg-blue-600 text-white text-center font-bold py-4 rounded-lg transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    Unverbindliches Angebot anfordern
+                                </button>
+                                <button id="pdf-btn"
+                                    class="block w-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-center font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                                    Offizielles Angebot als PDF laden
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,7 +246,7 @@
         </footer>
     </div>
 
-    <!-- Calculator Logic -->
+    <!-- Logic -->
     <script>
         const els = {
             product: document.getElementById('product'),
@@ -212,12 +259,77 @@
             sponsoringRow: document.getElementById('sponsoring-discount-row'),
             sponsoringDiscount: document.getElementById('sponsoring-discount'),
             total: document.getElementById('total-price'),
-            btn: document.getElementById('offer-btn')
+            btn: document.getElementById('offer-btn'),
+            pdfBtn: document.getElementById('pdf-btn'),
+            logoUpload: document.getElementById('logo-upload'),
+            logoMsg: document.getElementById('logo-msg'),
+            sizeSplitter: document.getElementById('size-splitter'),
+            sizeInputs: document.querySelectorAll('.size-input'),
+            sizeValidationMsg: document.getElementById('size-validation-msg'),
+            targetQty: document.getElementById('target-qty')
         };
 
+        // --- Logo Gatekeeper ---
+        els.logoUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) {
+                els.logoMsg.textContent = '';
+                return;
+            }
+
+            const ext = file.name.split('.').pop().toLowerCase();
+            const sizeMB = file.size / (1024 * 1024);
+
+            if (['ai', 'eps', 'pdf'].includes(ext)) {
+                els.logoMsg.innerHTML = '<span class="text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Perfektes Druckformat erkannt.</span>';
+            } else if (['jpg', 'jpeg', 'png'].includes(ext)) {
+                if (sizeMB < 1) {
+                    els.logoMsg.innerHTML = '<span class="text-red-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">error</span> Auflösung zu gering für Textildruck (< 1MB).</span>';
+                } else {
+                    els.logoMsg.innerHTML = '<span class="text-orange-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">warning</span> Achtung: Pixelgrafik. Vektordaten (AI, EPS, PDF) empfohlen.</span>';
+                }
+            } else {
+                els.logoMsg.innerHTML = '<span class="text-slate-500">Dateiformat wird geprüft...</span>';
+            }
+        });
+
+        // --- Size Splitter Logic ---
+        function updateSizeSplitter() {
+            let totalQty = parseInt(els.quantity.value) || 0;
+            if (totalQty < 10) totalQty = 10;
+
+            els.targetQty.textContent = totalQty;
+            els.sizeSplitter.classList.remove('hidden');
+
+            let currentSum = 0;
+            els.sizeInputs.forEach(input => {
+                currentSum += parseInt(input.value) || 0;
+            });
+
+            if (currentSum === totalQty) {
+                els.sizeValidationMsg.innerHTML = `<span class="text-green-600 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts (Perfekt)</span>`;
+                els.btn.disabled = false;
+                els.pdfBtn.disabled = false;
+                els.btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                els.pdfBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                els.sizeValidationMsg.innerHTML = `<span class="text-red-500 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts</span>`;
+                els.btn.disabled = true;
+                els.pdfBtn.disabled = true;
+                els.btn.classList.add('opacity-50', 'cursor-not-allowed');
+                els.pdfBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        els.sizeInputs.forEach(input => {
+            input.addEventListener('input', updateSizeSplitter);
+        });
+
+
+        // --- Calculator Logic ---
         function calculate() {
             let qty = parseInt(els.quantity.value) || 0;
-            if (qty < 10) qty = 10; // Enforce visual min, though input has min attr
+            if (qty < 10) qty = 10;
 
             const productPrice = parseFloat(els.product.value);
             const refPrice = parseFloat(els.refinement.value);
@@ -233,11 +345,6 @@
             } else {
                 els.bulkRow.classList.add('hidden');
             }
-
-            // Sponsoring Discount (applied after bulk discount logic usually, or on subtotal? 
-            // Prompt says "automatic 15% off" + "-10% discount". Let's apply sequentially or accumulatively?
-            // "Ab 50 Stück 15% abziehen" implies new base. "Logo auf Ärmel -> -10%".
-            // Commonly stacked: (Base - Bulk) - Sponsoring.
 
             let currentTotal = subtotal - bulkDisc;
 
@@ -259,33 +366,154 @@
             els.sponsoringDiscount.textContent = '-' + fmt(sponsorDisc);
             els.total.textContent = fmt(finalTotal);
 
-            // Update Mailto Link
             updateMailto(qty, productPrice, refPrice, els.sponsoring.checked, finalTotal);
+            updateSizeSplitter(); // Re-validate size split on qty change
         }
 
         function updateMailto(qty, pPrice, rPrice, isSponsoring, total) {
             const productName = els.product.options[els.product.selectedIndex].text;
             const refName = els.refinement.options[els.refinement.selectedIndex].text;
 
+            // Collect sizes
+            let sizesStr = "";
+            els.sizeInputs.forEach(input => {
+                const val = parseInt(input.value) || 0;
+                if (val > 0) sizesStr += `${input.dataset.size}: ${val}, `;
+            });
+            if (sizesStr) sizesStr = sizesStr.slice(0, -2);
+
             const subject = encodeURIComponent(`Anfrage: ${qty}x ${productName.split('(')[0].trim()}`);
             const body = encodeURIComponent(
-                `Hallo D-Shirts Team,
-
-ich bitte um ein unverbindliches Angebot für folgende Konfiguration:
-
-Produkt: ${productName}
-Menge: ${qty} Stück
-Veredelung: ${refName}
-Sponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}
-
-Indikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.
-
-Bitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.
-
-Mit freundlichen Grüßen
-`);
+                `Hallo D-Shirts Team,\n\nich bitte um ein unverbindliches Angebot für folgende Konfiguration:\n\nProdukt: ${productName}\nMenge: ${qty} Stück\nGrößenaufteilung: ${sizesStr || 'Bitte nachtragen'}\nVeredelung: ${refName}\nSponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}\n\nIndikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.\n\nBitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.\n\nMit freundlichen Grüßen`
+            );
             els.btn.href = `mailto:b2b@d-shirts.de?subject=${subject}&body=${body}`;
+
+            // Don't modify PDF button state here, controlled by validation
         }
+
+        // --- PDF Generation (jspdf) ---
+        window.jsPDF = window.jspdf.jsPDF;
+
+        els.pdfBtn.addEventListener('click', () => {
+            // Re-calculate to ensure we have latest values
+            let qty = parseInt(els.quantity.value) || 0;
+            if (qty < 10) qty = 10;
+            const productPrice = parseFloat(els.product.value);
+            const refPrice = parseFloat(els.refinement.value);
+            let subtotal = (productPrice + refPrice) * qty;
+            let bulkDisc = (qty >= 50) ? subtotal * 0.15 : 0;
+            let currentTotal = subtotal - bulkDisc;
+            let sponsorDisc = els.sponsoring.checked ? currentTotal * 0.10 : 0;
+            const finalTotal = currentTotal - sponsorDisc;
+
+            const doc = new jsPDF();
+
+            // Define styles
+            const primaryColor = '#0f172a';
+            const accentColor = '#3b82f6';
+
+            // Header
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(22);
+            doc.setTextColor(primaryColor);
+            doc.text("D-SHIRTS", 20, 20);
+
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text("UNVERBINDLICHER ENTWURF / TEST-DOKUMENT", 105, 20, { align: "center" });
+
+            // Sender (Placeholder)
+            doc.setFontSize(10);
+            doc.setTextColor(80);
+            doc.setFont("helvetica", "normal");
+            doc.text("Musterfirma GmbH\nMusterstraße 1\n12345 Musterstadt", 20, 35);
+
+            // Meta Data (Hardcoded)
+            doc.text("Datum: 09.02.2026", 150, 35);
+            doc.text("Gültig bis: 23.02.2026", 150, 40);
+            doc.text("Kundennummer: TEST-1234", 150, 45);
+
+            // Title
+            doc.setFontSize(16);
+            doc.setTextColor(primaryColor);
+            doc.setFont("helvetica", "bold");
+            doc.text("Angebot #T-2024-001 (Entwurf)", 20, 65);
+
+            // Product Details
+            doc.setDrawColor(200);
+            doc.line(20, 70, 190, 70); // Horizontal line
+
+            let y = 80;
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("Position 1", 20, y);
+
+            doc.setFont("helvetica", "normal");
+            const productName = els.product.options[els.product.selectedIndex].text;
+            doc.text(productName.split('(')[0].trim(), 50, y);
+
+            doc.setFont("helvetica", "bold");
+            doc.text(`${qty} Stk.`, 160, y, { align: "right" });
+            doc.text(`${subtotal.toFixed(2)} €`, 190, y, { align: "right" });
+
+            y += 10;
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            const refName = els.refinement.options[els.refinement.selectedIndex].text;
+            doc.text(`Veredelung: ${refName}`, 50, y);
+
+            // Discounts
+            if (bulkDisc > 0) {
+                y += 6;
+                doc.setTextColor(0, 128, 0); // Green
+                doc.text(`Mengenrabatt (15%)`, 50, y);
+                doc.text(`-${bulkDisc.toFixed(2)} €`, 190, y, { align: "right" });
+            }
+
+            if (sponsorDisc > 0) {
+                y += 6;
+                doc.setTextColor(0, 128, 0); // Green
+                doc.text(`Sponsoring-Rabatt (10%)`, 50, y);
+                doc.text(`-${sponsorDisc.toFixed(2)} €`, 190, y, { align: "right" });
+            }
+
+            // Size Split
+            y += 15;
+            doc.setTextColor(80);
+            doc.setFontSize(10);
+            doc.text("Größenaufteilung:", 50, y);
+            let sizesText = [];
+            els.sizeInputs.forEach(input => {
+                const val = parseInt(input.value) || 0;
+                if (val > 0) sizesText.push(`${input.dataset.size}: ${val}`);
+            });
+            doc.text(sizesText.join(" | "), 85, y);
+
+            // Total
+            y += 20;
+            doc.setDrawColor(0);
+            doc.line(20, y, 190, y);
+            y += 10;
+            doc.setFontSize(14);
+            doc.setTextColor(primaryColor);
+            doc.setFont("helvetica", "bold");
+            doc.text("Gesamtsumme (netto):", 120, y, { align: "right" });
+            doc.text(`${finalTotal.toFixed(2)} €`, 190, y, { align: "right" });
+
+            y += 6;
+            doc.setFontSize(8);
+            doc.setTextColor(150);
+            doc.text("zzgl. gesetzlicher MwSt.", 190, y, { align: "right" });
+
+            // Footer
+            doc.setFontSize(8);
+            doc.setTextColor(150);
+            doc.text("Musterfirma GmbH | Geschäftsführer: Max Mustermann | HRB 123456 | USt-ID: DE123456789", 105, 280, { align: "center" });
+
+            // Save
+            doc.save("Angebot_Entwurf_D-SHIRTS.pdf");
+        });
+
 
         // Listeners
         [els.product, els.quantity, els.refinement, els.sponsoring].forEach(el => {
