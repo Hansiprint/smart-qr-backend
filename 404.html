@@ -3,46 +3,84 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
+    <title>Redirect Debugger</title>
     <style>
         body {
-            background-color: #000033;
-            /* Dark Blue for Visual Confirmation */
-            color: white;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            background-color: #222;
+            color: #0f0;
+            /* Matrix Green for Debugging */
+            font-family: monospace;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .info {
+            border: 1px solid #444;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #111;
         }
     </style>
-    <script>
-        var path = window.location.pathname;
-        var redirects = {
-            "frisch": "https://de.wikipedia.org/wiki/Frische",
-            "fred": "https://cafefred.de/",  // WICHTIG: Ohne Bindestrich!
-            "test": "https://google.com"
-        };
-        // Prüfen, ob "/go/" im Pfad vorkommt
-        if (path.includes("/go/")) {
-            var parts = path.split("/go/");
-            var key = parts[1] ? parts[1].replace("/", "") : "";
-            if (redirects[key]) {
-                window.location.replace(redirects[key]);
-            } else {
-                // WICHTIG: Absolute Pfad nutzen
-                window.location.replace("/smart-qr-backend/index.html");
-            }
-        } else {
-            // Kein /go/ Link -> Zurück zur Startseite
-            window.location.replace("/smart-qr-backend/index.html");
-        }
-    </script>
 </head>
 
 <body>
-    <p>Redirecting V5.0 (Fred Fix)...</p>
+    <h1>404 Redirect Debugger V6</h1>
+    <div class="info">
+        <p><strong>Path:</strong> <span id="path-out">...</span></p>
+        <p><strong>Extracted Key:</strong> <span id="key-out">...</span></p>
+        <p><strong>Target URL:</strong> <span id="target-out">...</span></p>
+        <p><strong>Status:</strong> <span id="status-out">Analyzing...</span></p>
+    </div>
+
+    <script>
+        var path = window.location.pathname;
+        document.getElementById('path-out').innerText = path;
+
+        var redirects = {
+            "frisch": "https://de.wikipedia.org/wiki/Frische",
+            "fred": "https://cafefred.de/",
+            "test": "https://google.com"
+        };
+
+        var key = "";
+        var target = "";
+
+        // Robust Parsing Logic
+        if (path.toLowerCase().includes("/go/")) {
+            var parts = path.split(/\/go\//i); // Case insensitive split
+            if (parts[1]) {
+                // Remove trailing slash, lowercase, limit chars
+                key = parts[1].replace(/\/$/, "").toLowerCase().trim();
+                document.getElementById('key-out').innerText = "'" + key + "'";
+
+                if (redirects[key]) {
+                    target = redirects[key];
+                    document.getElementById('target-out').innerText = target;
+                    document.getElementById('status-out').innerText = "Redirecting in 2 seconds...";
+
+                    // Delay to allow reading debug info
+                    setTimeout(function () {
+                        window.location.replace(target);
+                    }, 2000);
+                } else {
+                    document.getElementById('status-out').innerText = "KEY NOT FOUND IN DATABASE. Fallback to Home in 5s.";
+                    setTimeout(function () {
+                        window.location.replace("/smart-qr-backend/index.html");
+                    }, 5000);
+                }
+            } else {
+                document.getElementById('status-out').innerText = "NO KEY FOUND AFTER /go/. Fallback in 5s.";
+                setTimeout(function () {
+                    window.location.replace("/smart-qr-backend/index.html");
+                }, 5000);
+            }
+        } else {
+            document.getElementById('status-out').innerText = "NOT A /go/ LINK. Fallback in 3s.";
+            setTimeout(function () {
+                window.location.replace("/smart-qr-backend/index.html");
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>
