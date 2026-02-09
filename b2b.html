@@ -84,6 +84,25 @@
                 <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
                     <!-- Inputs -->
                     <div class="space-y-6">
+                        <!-- Design Service Selection -->
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <label class="block text-sm font-bold text-slate-900 mb-3">Wie sieht deine
+                                Druckdaten-Situation aus?</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="radio" name="designOpt" value="standard" checked
+                                        class="text-accent focus:ring-accent border-slate-300">
+                                    <span class="text-sm text-slate-700">Ich habe eine fertige Datei (Standard)</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="radio" name="designOpt" value="service"
+                                        class="text-accent focus:ring-accent border-slate-300">
+                                    <span class="text-sm text-slate-700 font-bold">Ich brauche ein Design (+49,00
+                                        €)</span>
+                                </label>
+                            </div>
+                        </div>
+
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Produkt</label>
                             <select id="product"
@@ -139,12 +158,20 @@
                             </select>
                         </div>
 
-                        <!-- Logo Check -->
+                        <!-- Logo Check / Upload -->
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Logo-Upload (Check)</label>
+                            <label id="upload-label" class="block text-sm font-bold text-slate-700 mb-2">Logo-Upload
+                                (Check)</label>
                             <input type="file" id="logo-upload"
                                 class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-accent hover:file:bg-blue-100 transition-colors cursor-pointer" />
                             <div id="logo-msg" class="mt-2 text-xs font-medium min-h-[1.5em]"></div>
+                        </div>
+
+                        <!-- Idea Description (Hidden by default) -->
+                        <div id="idea-box" class="hidden">
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Beschreibe deine Idee</label>
+                            <textarea id="idea-desc" rows="3" placeholder="Welches Motiv? Welche Farben? Welcher Text?"
+                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent text-sm"></textarea>
                         </div>
 
                         <div class="pt-4">
@@ -165,6 +192,10 @@
                             <div class="flex justify-between text-slate-500">
                                 <span>Zwischensumme:</span>
                                 <span id="subtotal">0,00 €</span>
+                            </div>
+                            <div class="flex justify-between text-slate-900 font-bold hidden" id="design-fee-row">
+                                <span>Design-Pauschale:</span>
+                                <span id="design-fee">49,00 €</span>
                             </div>
                             <div class="flex justify-between text-green-600 font-medium hidden" id="bulk-discount-row">
                                 <span>Mengenrabatt (15%):</span>
@@ -190,7 +221,7 @@
                                     Unverbindliches Angebot anfordern
                                 </button>
                                 <button id="pdf-btn"
-                                    class="block w-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-center font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                    class="block w-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-center font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                                     <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
                                     Offizielles Angebot als PDF laden
                                 </button>
@@ -249,6 +280,11 @@
     <!-- Logic -->
     <script>
         const els = {
+            designRadios: document.getElementsByName('designOpt'),
+            ideaBox: document.getElementById('idea-box'),
+            ideaDesc: document.getElementById('idea-desc'),
+            uploadLabel: document.getElementById('upload-label'),
+            designFeeRow: document.getElementById('design-fee-row'),
             product: document.getElementById('product'),
             quantity: document.getElementById('quantity'),
             refinement: document.getElementById('refinement'),
@@ -269,17 +305,50 @@
             targetQty: document.getElementById('target-qty')
         };
 
+        // --- Design Service Logic ---
+        function checkDesignService() {
+            let isService = false;
+            els.designRadios.forEach(r => { if (r.checked && r.value === 'service') isService = true; });
+            return isService;
+        }
+
+        els.designRadios.forEach(r => {
+            r.addEventListener('change', () => {
+                const isService = checkDesignService();
+                if (isService) {
+                    els.ideaBox.classList.remove('hidden');
+                    els.designFeeRow.classList.remove('hidden');
+                    els.uploadLabel.textContent = "Lade hier Skizzen oder Logos zur Inspiration hoch (JPG/PNG ok)";
+                    els.logoMsg.textContent = ""; // Clear existing warnings
+                } else {
+                    els.ideaBox.classList.add('hidden');
+                    els.designFeeRow.classList.add('hidden');
+                    els.uploadLabel.textContent = "Logo-Upload (Check)";
+                    els.logoMsg.textContent = "";
+                }
+                validateLogo(els.logoUpload.files[0]); // Re-validate if file exists
+                calculate();
+            });
+        });
+
         // --- Logo Gatekeeper ---
-        els.logoUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
+        function validateLogo(file) {
             if (!file) {
                 els.logoMsg.textContent = '';
                 return;
             }
 
+            const isService = checkDesignService();
             const ext = file.name.split('.').pop().toLowerCase();
             const sizeMB = file.size / (1024 * 1024);
 
+            if (isService) {
+                // Relaxed rules
+                els.logoMsg.innerHTML = '<span class="text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Danke! Wir nutzen dies als Referenz für das Design.</span>';
+                return;
+            }
+
+            // Strict rules
             if (['ai', 'eps', 'pdf'].includes(ext)) {
                 els.logoMsg.innerHTML = '<span class="text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Perfektes Druckformat erkannt.</span>';
             } else if (['jpg', 'jpeg', 'png'].includes(ext)) {
@@ -291,7 +360,9 @@
             } else {
                 els.logoMsg.innerHTML = '<span class="text-slate-500">Dateiformat wird geprüft...</span>';
             }
-        });
+        }
+
+        els.logoUpload.addEventListener('change', (e) => validateLogo(e.target.files[0]));
 
         // --- Size Splitter Logic ---
         function updateSizeSplitter() {
@@ -333,6 +404,8 @@
 
             const productPrice = parseFloat(els.product.value);
             const refPrice = parseFloat(els.refinement.value);
+            const isService = checkDesignService();
+            const serviceFee = isService ? 49.00 : 0.00;
 
             // Base Calculation
             let subtotal = (productPrice + refPrice) * qty;
@@ -346,10 +419,21 @@
                 els.bulkRow.classList.add('hidden');
             }
 
-            let currentTotal = subtotal - bulkDisc;
+            // Design fee is usually added to total, not discounted. 
+            // It's a fixed fee. Let's add it BEFORE sponsoring discount? 
+            // Or is sponsoring only on shirts? Usually only on merchandise value.
+            // Let's keep logic: (Merch - Bulk) + Fee? Or ((Merch + Fee) - Bulk)?
+            // Usually Fees are excluded from bulk discounts.
+            // Let's do: MerchTotal -> DiscountedMerch -> + Fee -> - Sponsoring?
+            // "Ab 50 Stück 15% Rabatt abziehen" refers to unit price usually.
+
+            let currentMerchTotal = subtotal - bulkDisc;
+            let currentTotal = currentMerchTotal + serviceFee;
 
             let sponsorDisc = 0;
             if (els.sponsoring.checked) {
+                // 10% on total or just merch? Assuming total invoice common for sponsoring deals or just merch.
+                // To be safe and generous, let's discount the Total so far.
                 sponsorDisc = currentTotal * 0.10;
                 els.sponsoringRow.classList.remove('hidden');
             } else {
@@ -366,15 +450,14 @@
             els.sponsoringDiscount.textContent = '-' + fmt(sponsorDisc);
             els.total.textContent = fmt(finalTotal);
 
-            updateMailto(qty, productPrice, refPrice, els.sponsoring.checked, finalTotal);
+            updateMailto(qty, productPrice, refPrice, els.sponsoring.checked, finalTotal, isService);
             updateSizeSplitter(); // Re-validate size split on qty change
         }
 
-        function updateMailto(qty, pPrice, rPrice, isSponsoring, total) {
+        function updateMailto(qty, pPrice, rPrice, isSponsoring, total, isService) {
             const productName = els.product.options[els.product.selectedIndex].text;
             const refName = els.refinement.options[els.refinement.selectedIndex].text;
 
-            // Collect sizes
             let sizesStr = "";
             els.sizeInputs.forEach(input => {
                 const val = parseInt(input.value) || 0;
@@ -382,35 +465,39 @@
             });
             if (sizesStr) sizesStr = sizesStr.slice(0, -2);
 
+            const serviceText = isService ? `JA (+49 EUR) - Idee: ${els.ideaDesc.value}` : "NEIN (Druckdaten vorhanden)";
+
             const subject = encodeURIComponent(`Anfrage: ${qty}x ${productName.split('(')[0].trim()}`);
             const body = encodeURIComponent(
-                `Hallo D-Shirts Team,\n\nich bitte um ein unverbindliches Angebot für folgende Konfiguration:\n\nProdukt: ${productName}\nMenge: ${qty} Stück\nGrößenaufteilung: ${sizesStr || 'Bitte nachtragen'}\nVeredelung: ${refName}\nSponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}\n\nIndikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.\n\nBitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.\n\nMit freundlichen Grüßen`
+                `Hallo D-Shirts Team,\n\nich bitte um ein unverbindliches Angebot für folgende Konfiguration:\n\nProdukt: ${productName}\nMenge: ${qty} Stück\nGrößenaufteilung: ${sizesStr || 'Bitte nachtragen'}\nVeredelung: ${refName}\nDesign-Service: ${serviceText}\nSponsoring-Option: ${isSponsoring ? 'JA (-10%)' : 'NEIN'}\n\nIndikativer Preis laut Kalkulator: ca. ${total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € netto.\n\nBitte melden Sie sich bezüglich der Druckdaten und Lieferzeiten.\n\nMit freundlichen Grüßen`
             );
             els.btn.href = `mailto:b2b@d-shirts.de?subject=${subject}&body=${body}`;
-
-            // Don't modify PDF button state here, controlled by validation
         }
+
+        // Listen to textarea changes to update mailto link content dynamically if needed
+        els.ideaDesc.addEventListener('input', calculate);
 
         // --- PDF Generation (jspdf) ---
         window.jsPDF = window.jspdf.jsPDF;
 
         els.pdfBtn.addEventListener('click', () => {
-            // Re-calculate to ensure we have latest values
+            // Re-calc locally
             let qty = parseInt(els.quantity.value) || 0;
             if (qty < 10) qty = 10;
             const productPrice = parseFloat(els.product.value);
             const refPrice = parseFloat(els.refinement.value);
+            const isService = checkDesignService();
+            const serviceFee = isService ? 49.00 : 0.00;
+
             let subtotal = (productPrice + refPrice) * qty;
             let bulkDisc = (qty >= 50) ? subtotal * 0.15 : 0;
-            let currentTotal = subtotal - bulkDisc;
+            let currentMerchTotal = subtotal - bulkDisc;
+            let currentTotal = currentMerchTotal + serviceFee;
             let sponsorDisc = els.sponsoring.checked ? currentTotal * 0.10 : 0;
             const finalTotal = currentTotal - sponsorDisc;
 
             const doc = new jsPDF();
-
-            // Define styles
             const primaryColor = '#0f172a';
-            const accentColor = '#3b82f6';
 
             // Header
             doc.setFont("helvetica", "bold");
@@ -422,16 +509,15 @@
             doc.setTextColor(100);
             doc.text("UNVERBINDLICHER ENTWURF / TEST-DOKUMENT", 105, 20, { align: "center" });
 
-            // Sender (Placeholder)
+            // Sender
             doc.setFontSize(10);
             doc.setTextColor(80);
             doc.setFont("helvetica", "normal");
             doc.text("Musterfirma GmbH\nMusterstraße 1\n12345 Musterstadt", 20, 35);
 
-            // Meta Data (Hardcoded)
+            // Meta
             doc.text("Datum: 09.02.2026", 150, 35);
             doc.text("Gültig bis: 23.02.2026", 150, 40);
-            doc.text("Kundennummer: TEST-1234", 150, 45);
 
             // Title
             doc.setFontSize(16);
@@ -439,9 +525,8 @@
             doc.setFont("helvetica", "bold");
             doc.text("Angebot #T-2024-001 (Entwurf)", 20, 65);
 
-            // Product Details
             doc.setDrawColor(200);
-            doc.line(20, 70, 190, 70); // Horizontal line
+            doc.line(20, 70, 190, 70);
 
             let y = 80;
             doc.setFontSize(12);
@@ -456,24 +541,38 @@
             doc.text(`${qty} Stk.`, 160, y, { align: "right" });
             doc.text(`${subtotal.toFixed(2)} €`, 190, y, { align: "right" });
 
-            y += 10;
+            y += 8;
             doc.setFontSize(10);
             doc.setTextColor(100);
             const refName = els.refinement.options[els.refinement.selectedIndex].text;
             doc.text(`Veredelung: ${refName}`, 50, y);
 
+            // Optional Design Position
+            if (isService) {
+                y += 12;
+                doc.setTextColor(primaryColor);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "bold");
+                doc.text("Position 2", 20, y);
+                doc.setFont("helvetica", "normal");
+                doc.text("Profi-Design-Erstellung (Pauschal)", 50, y);
+                doc.text("1 Stk.", 160, y, { align: "right" });
+                doc.text("49,00 €", 190, y, { align: "right" });
+            }
+
             // Discounts
             if (bulkDisc > 0) {
-                y += 6;
+                y += (isService ? 12 : 12);
                 doc.setTextColor(0, 128, 0); // Green
-                doc.text(`Mengenrabatt (15%)`, 50, y);
+                doc.setFontSize(10);
+                doc.text(`Mengenrabatt (15%) auf Textil`, 50, y);
                 doc.text(`-${bulkDisc.toFixed(2)} €`, 190, y, { align: "right" });
             }
 
             if (sponsorDisc > 0) {
                 y += 6;
-                doc.setTextColor(0, 128, 0); // Green
-                doc.text(`Sponsoring-Rabatt (10%)`, 50, y);
+                doc.setTextColor(0, 128, 0);
+                doc.text(`Sponsoring-Rabatt (10%) auf Gesamt`, 50, y);
                 doc.text(`-${sponsorDisc.toFixed(2)} €`, 190, y, { align: "right" });
             }
 
