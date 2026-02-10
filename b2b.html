@@ -95,7 +95,7 @@
                                     <span class="text-sm text-slate-700">Ich habe eine fertige Datei (Standard)</span>
                                 </label>
                                 <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="radio" name="designOpt" value="service"
+                                    <input type="radio" name="designOpt" value="service" id="design-service-active"
                                         class="text-accent focus:ring-accent border-slate-300">
                                     <span class="text-sm text-slate-700 font-bold">Ich brauche ein Design (+49,00
                                         €)</span>
@@ -340,7 +340,8 @@
                         <div class="mt-8 pt-6 border-t border-slate-200">
                             <div class="flex justify-between items-end mb-1">
                                 <span class="text-slate-600 font-medium">Gesamtpreis (netto)</span>
-                                <span id="total-price" class="text-3xl font-bold text-slate-900">0,00 €</span>
+                                <span id="total-price" class="text-3xl font-bold text-slate-900 total-price">0,00
+                                    €</span>
                             </div>
                             <div class="text-right text-xs text-slate-400 mb-6">zzgl. MwSt. und Versand</div>
 
@@ -368,7 +369,7 @@
                                         <div class="flex gap-2">
                                             <input type="email" name="email" required placeholder="Deine E-Mail-Adresse"
                                                 class="w-full p-3 border border-slate-300 rounded-lg focus:ring-accent focus:border-accent text-sm">
-                                            <button type="submit" id="submit-btn"
+                                            <button type="button" onclick="safeSubmit()" id="submit-btn"
                                                 class="bg-black hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
                                                 ANFRAGEN
                                             </button>
@@ -632,64 +633,94 @@
             calculate(); // Re-trigger potentially needed updates
         }
 
-        // --- Form Submission Logic ---
-        document.getElementById('b2b-form').addEventListener('submit', function (e) {
-            // Populate Hidden Fields
-            const isService = checkDesignService();
-            const productName = els.product.options[els.product.selectedIndex].text;
-            const refName = els.refinement.options[els.refinement.selectedIndex].text;
-
-            document.getElementById('hidden-menge').value = els.quantity.value || 0;
-            document.getElementById('hidden-produkt').value = productName;
-            document.getElementById('hidden-veredelung').value = refName;
-            document.getElementById('hidden-preis').value = els.total.textContent || '0,00 €';
-
-            // Sizes
-            let sizesStr = "";
-            els.sizeInputs.forEach(input => {
-                const val = parseInt(input.value) || 0;
-                if (val > 0) sizesStr += `${input.dataset.size}: ${val}, `;
-            });
-            if (sizesStr) sizesStr = sizesStr.slice(0, -2);
-            document.getElementById('hidden-sizes').value = sizesStr || "Nicht spezifiziert";
-
-            // Service & Idea
-            document.getElementById('hidden-service').value = isService ? "JA (+49 EUR)" : "NEIN";
-            document.getElementById('hidden-idee').value = isService ? els.ideaDesc.value : "-";
-
-            // Style Reference (Already updated by onchange, but double check default)
-            let styleRef = "none";
-            const checkedRadio = document.querySelector('input[name="style_selection_visual"]:checked');
-            if (checkedRadio) styleRef = checkedRadio.value;
-
-            document.getElementById('hidden-reference').value = (isService && styleRef !== 'none') ? styleRef : "Keine Vorlage";
-
-            // AI Prompt
-            let promptBase = `Vector T-Shirt Design: ${els.ideaDesc.value.trim()}`;
-            if (isService && styleRef !== 'none') {
-                promptBase += `, BASED ON STYLE OF: ${styleRef}`;
+        // --- Robust Form Submission (Fail-Safe) ---
+        function safeSubmit() {
+            // Button Feedback
+            var btn = document.getElementById('submit-btn');
+            if (btn) {
+                btn.innerHTML = "Wird gesendet... ⏳";
+                btn.disabled = true;
             }
 
-            const suffix = "... IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, NO LETTERS, graphic elements only, isolated on white background.";
+            try {
+                // 1. Basis-Daten holen
+                var menge = document.getElementById('quantity') ? document.getElementById('quantity').value : '0';
+                var produkt = document.getElementById('product') ? document.getElementById('product').value : 'Unbekannt';
+                // Using existing ID 'idea-desc'
+                var idee = document.getElementById('idea-desc') ? document.getElementById('idea-desc').value : 'Keine Beschreibung';
 
-            if (isService && els.ideaDesc.value.trim().length > 0) {
-                document.getElementById('hidden-prompt').value =
-                    `${promptBase}, streetwear style, bold linework ${suffix}`;
-            } else {
-                // Even if no specific description, we might want to attach the suffix if there's any content?
-                // User Requirement: "Egal was der Kunde eingibt, der generierte String für mich MUSS am Ende diesen Zusatz haben: ..."
-                // So we should append it to whatever we generate, or even if empty?
-                // "Kein Design-Service gebucht oder keine Beschreibung." -> probably doesn't make sense here.
-                // But let's apply it when generating a prompt.
-                if (isService) {
-                    // If service is booked but no description, we still might want the style ref + suffix?
-                    // Let's assume promptBase is what we have.
-                    document.getElementById('hidden-prompt').value = `${promptBase} ${suffix}`;
-                } else {
-                    document.getElementById('hidden-prompt').value = "Kein Design-Service gebucht.";
+                // In Hidden Fields schreiben
+                if (document.getElementById('hidden-menge')) document.getElementById('hidden-menge').value = menge;
+                if (document.getElementById('hidden-produkt')) document.getElementById('hidden-produkt').value = produkt;
+                if (document.getElementById('hidden-idee')) document.getElementById('hidden-idee').value = idee;
+
+                // 2. Preis holen
+                var preisDisplay = document.querySelector('.total-price'); // Added class to HTML to match
+                if (document.getElementById('hidden-preis')) {
+                    document.getElementById('hidden-preis').value = preisDisplay ? preisDisplay.innerText : (document.getElementById('total-price') ? document.getElementById('total-price').innerText : '0,00 €');
                 }
+
+                // 3. Design-Logik (Der kritische Teil)
+                var serviceCheck = document.getElementById('design-service-active');
+                var isService = serviceCheck && serviceCheck.checked;
+
+                if (document.getElementById('hidden-service')) {
+                    document.getElementById('hidden-service').value = isService ? "JA (+49€)" : "NEIN";
+                }
+
+                // Sizes Handling (Added to ensure it's not lost)
+                let sizesStr = "";
+                document.querySelectorAll('.size-input').forEach(input => {
+                    const val = parseInt(input.value) || 0;
+                    if (val > 0) sizesStr += `${input.dataset.size}: ${val}, `;
+                });
+                if (sizesStr) sizesStr = sizesStr.slice(0, -2);
+                if (document.getElementById('hidden-sizes')) document.getElementById('hidden-sizes').value = sizesStr || "Nicht spezifiziert";
+
+
+                var promptText = "Kein Design-Service gebucht.";
+
+                if (isService) {
+                    // Versuche sicher den Style zu lesen
+                    var styleRef = "Freie Hand";
+                    // Using existing name 'style_selection_visual'
+                    var selected = document.querySelector('input[name="style_selection_visual"]:checked');
+
+                    if (selected) {
+                        styleRef = selected.value;
+                    } else {
+                        // Fallback, falls nichts gewählt wurde (verhindert Absturz)
+                        console.log("Kein Bild gewählt, nutze Fallback");
+                        styleRef = "Standard (Freie Hand) / Keine Vorlage";
+                    }
+
+                    if (document.getElementById('hidden-reference')) {
+                        document.getElementById('hidden-reference').value = styleRef;
+                    }
+
+                    // Prompt bauen (IMMER OHNE TEXT)
+                    promptText = "VECTOR T-SHIRT DESIGN: " + idee +
+                        ", BASED ON STYLE: " + styleRef +
+                        ", streetwear aesthetic, bold linework, IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, NO LETTERS, isolated vector graphic on white background.";
+                }
+
+                if (document.getElementById('hidden-prompt')) {
+                    document.getElementById('hidden-prompt').value = promptText;
+                }
+
+            } catch (e) {
+                console.error("Fehler beim Datensammeln - Sende trotzdem:", e);
+                // Wir ignorieren den Fehler und senden das Formular trotzdem ab!
             }
-        });
+
+            // 4. Absenden
+            var form = document.getElementById('b2b-form');
+            if (form) {
+                form.submit();
+            } else {
+                alert("Fehler: Formular nicht gefunden. Bitte Seite neu laden.");
+            }
+        }
 
         // --- PDF Generation (jspdf) ---
         window.jsPDF = window.jspdf.jsPDF;
