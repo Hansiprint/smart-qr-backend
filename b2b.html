@@ -10,856 +10,213 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap"
-        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;display=swap"
         rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0f172a", // Slate 900
-                        "accent": "#3b82f6", // Blue 500
-                        "background-light": "#f8fafc", // Slate 50
-                        "background-dark": "#0f172a",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "serif": ["Newsreader", "serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                    },
-                },
-            },
-        }
-    </script>
     <style>
         body {
             font-family: 'Manrope', sans-serif;
-            -webkit-font-smoothing: antialiased;
         }
 
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-variation-settings: 'FILL' 0, 'wght' 300;
         }
     </style>
 </head>
 
-<body class="bg-background-light text-primary transition-colors duration-300">
-    <div class="relative flex min-h-screen flex-col">
-        <!-- Header -->
-        <nav
-            class="sticky top-0 z-50 flex items-center bg-white/90 backdrop-blur-md px-6 py-4 justify-between border-b border-gray-200">
-            <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
-                <span
-                    class="material-symbols-outlined text-primary text-[20px] transition-transform group-hover:-translate-x-1">arrow_back_ios</span>
-                <p class="text-gray-500 text-sm font-medium tracking-wide">Zurück zur Startseite</p>
-            </a>
-            <div class="font-bold tracking-widest text-primary">D-SHIRTS <span class="text-accent">B2B</span></div>
-        </nav>
+<body class="bg-slate-50 text-slate-900">
+    <nav
+        class="sticky top-0 z-50 bg-white/90 backdrop-blur-md px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black">
+            <span class="material-symbols-outlined text-[20px]">arrow_back_ios</span> Zurück
+        </a>
+        <div class="font-bold tracking-widest">D-SHIRTS <span class="text-blue-600">B2B</span></div>
+    </nav>
 
-        <!-- Hero Section -->
-        <section class="py-20 px-6 text-center bg-white">
-            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-display tracking-tight">
-                Textildruck für <span class="text-accent underline decoration-4 decoration-accent/20">Profis</span>.
-            </h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Hochwertige Arbeitskleidung und Merchandise für Ihr Unternehmen oder Ihren Verein.
-                Faire Preise, Premium-Qualität und Express-Produktion.
-            </p>
-        </section>
+    <section class="py-16 px-6 text-center bg-white">
+        <h1 class="text-4xl font-bold mb-4">Textildruck für <span
+                class="text-blue-600 underline decoration-blue-200">Profis</span>.</h1>
+        <p class="text-slate-600 max-w-2xl mx-auto">Hochwertige Arbeitskleidung & Merchandise. Faire Preise,
+            Premium-Qualität.</p>
+    </section>
 
-        <!-- Calculator Section -->
-        <section class="max-w-4xl mx-auto px-4 pb-20 w-full">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
-                <div class="bg-slate-900 p-6 text-white text-center">
-                    <h2 class="text-xl font-bold tracking-wide">Preiskalkulator</h2>
-                    <p class="text-slate-400 text-sm mt-1">Erstellen Sie Ihr unverbindliches Szenario</p>
-                </div>
+    <section class="max-w-4xl mx-auto px-4 pb-20">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+            <div class="bg-slate-900 p-6 text-white text-center">
+                <h2 class="text-xl font-bold">Anfrage konfigurieren</h2>
+            </div>
 
-                <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <!-- Inputs -->
-                    <div class="space-y-6">
-                        <!-- Design Service Selection -->
-                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                            <label class="block text-sm font-bold text-slate-900 mb-3">Wie sieht deine
-                                Druckdaten-Situation aus?</label>
-                            <div class="space-y-2">
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="radio" name="designOpt" value="standard" checked
-                                        class="text-accent focus:ring-accent border-slate-300">
-                                    <span class="text-sm text-slate-700">Ich habe eine fertige Datei (Standard)</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="radio" name="designOpt" value="service" id="design-service-active"
-                                        class="text-accent focus:ring-accent border-slate-300">
-                                    <span class="text-sm text-slate-700 font-bold">Ich brauche ein Design (+49,00
-                                        €)</span>
-                                </label>
-                            </div>
-                        </div>
+            <div class="p-8">
+                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST" enctype="multipart/form-data"
+                    id="b2b-form">
 
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Produkt</label>
-                            <select id="product"
-                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
-                                <option value="15">Premium T-Shirt (15,00 €)</option>
-                                <option value="35">Organic Hoodie (35,00 €)</option>
-                            </select>
-                        </div>
+                    <input type="hidden" name="_subject" value="Neue B2B Anfrage (D-SHIRTS)">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://hansiprint.github.io/smart-qr-backend/danke.html">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
 
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Menge (min. 10)</label>
-                            <input type="number" id="quantity" value="20" min="10"
-                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
-                        </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-                        <!-- Size Splitter -->
-                        <div id="size-splitter" class="bg-slate-50 p-4 rounded-lg border border-slate-200 hidden">
-                            <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wider">Größen
-                                verteilen</label>
-                            <div class="grid grid-cols-5 gap-2 mb-2">
-                                <div class="text-center"><label class="text-[10px] text-slate-400">S</label><input
-                                        type="number" min="0" data-size="S"
-                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
-                                </div>
-                                <div class="text-center"><label class="text-[10px] text-slate-400">M</label><input
-                                        type="number" min="0" data-size="M"
-                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
-                                </div>
-                                <div class="text-center"><label class="text-[10px] text-slate-400">L</label><input
-                                        type="number" min="0" data-size="L"
-                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
-                                </div>
-                                <div class="text-center"><label class="text-[10px] text-slate-400">XL</label><input
-                                        type="number" min="0" data-size="XL"
-                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
-                                </div>
-                                <div class="text-center"><label class="text-[10px] text-slate-400">XXL</label><input
-                                        type="number" min="0" data-size="XXL"
-                                        class="size-input w-full text-center text-xs p-1 rounded border-slate-200 focus:ring-1 focus:ring-accent">
-                                </div>
-                            </div>
-                            <div id="size-validation-msg" class="text-xs text-center font-medium text-slate-500">
-                                Verteilt: 0 von <span id="target-qty">20</span> Shirts
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Veredelung</label>
-                            <select id="refinement"
-                                class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent">
-                                <option value="0">Nur Front-Druck (inkl.)</option>
-                                <option value="5">Front & Rücken (+ 5,00 €)</option>
-                            </select>
-                        </div>
-
-                        <!-- Logo Check / Upload -->
-                        <div>
-                            <label id="upload-label" class="block text-sm font-bold text-slate-700 mb-2">Logo-Upload
-                                (Check)</label>
-                            <input type="file" id="logo-upload" name="logo_upload"
-                                class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-accent hover:file:bg-blue-100 transition-colors cursor-pointer" />
-                            <div id="logo-msg" class="mt-2 text-xs font-medium min-h-[1.5em]"></div>
-                        </div>
-
-                        <!-- Idea Description (Hidden by default) -->
-                        <div id="idea-box" class="hidden space-y-3">
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Visuelle Stil-Orientierung
-                                    (Klick dein Favorit)</label>
-                                <div
-                                    class="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-60 overflow-y-auto p-2 border border-slate-200 rounded-lg custom-scrollbar">
-                                    <!-- Option 1: None -->
-                                    <label class="style-option cursor-pointer relative group">
-                                        <input type="radio" name="style_selection_visual" value="none" checked
-                                            onchange="updateStyleReference(this)" class="peer sr-only">
-                                        <div
-                                            class="border-2 border-transparent peer-checked:border-black rounded-lg overflow-hidden transition-all h-24 bg-slate-100 flex items-center justify-center text-center p-2 hover:bg-slate-200">
-                                            <div class="text-xs font-bold text-slate-500">Keine Vorlage<br>(Freiheit)
-                                            </div>
-                                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                                <label class="block text-sm font-bold mb-3">Druckdaten-Situation?</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="radio" name="Service_Option" value="Eigene Datei vorhanden" checked
+                                            class="text-blue-600 focus:ring-blue-500 border-gray-300">
+                                        <span class="text-sm">Ich habe eine Datei (Standard)</span>
                                     </label>
-
-                                    <!-- Dynamic Options from Images Folder (Hardcoded for this task) -->
-                                    <div id="style-grid-container"
-                                        class="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-2">
-                                        <!-- Image 1 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-1.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-1.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-1.png</div>
-                                        </label>
-
-                                        <!-- Image 2 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-2.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-2.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-2.png</div>
-                                        </label>
-
-                                        <!-- Image 3 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-3.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-3.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-3.png</div>
-                                        </label>
-
-                                        <!-- Image 4 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-4.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-4.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-4.png</div>
-                                        </label>
-
-                                        <!-- Image 5 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-5.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-5.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-5.png</div>
-                                        </label>
-
-                                        <!-- Image 6 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-6.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-6.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-6.png</div>
-                                        </label>
-
-                                        <!-- Image 7 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-7.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-7.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-7.png</div>
-                                        </label>
-
-                                        <!-- Image 8 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-8.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-8.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-8.png</div>
-                                        </label>
-
-                                        <!-- Image 9 -->
-                                        <label class="visual-option"
-                                            style="cursor: pointer; margin: 5px; display: inline-block; text-align: center;">
-                                            <input type="radio" name="style_selection_visual" value="image-9.png"
-                                                onchange="updateStyleReference(this)" style="display: none;">
-                                            <img src="./images/image-9.png"
-                                                onerror="this.parentElement.style.display='none'"
-                                                style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-9.png</div>
-                                        </label>
-                                    </div>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="radio" name="Service_Option" value="Design-Service (+49 EUR)"
+                                            id="service-check"
+                                            class="text-blue-600 focus:ring-blue-500 border-gray-300">
+                                        <span class="text-sm font-bold">Ich brauche ein Design (+49€)</span>
+                                    </label>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Beschreibe deine Idee</label>
-                                <textarea id="idea-desc" rows="3"
-                                    placeholder="Welches Motiv? Welche Farben? Welcher Text?"
-                                    class="w-full rounded-lg border-slate-300 focus:border-accent focus:ring-accent text-sm"></textarea>
-                                <div id="ai-status"
-                                    class="mt-2 text-xs text-slate-400 italic hidden flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-[10px] animate-pulse">cached</span>
-                                    System optimiert Beschreibung für Design-Abteilung...
+                                <label class="block text-sm font-bold mb-2">Produkt</label>
+                                <select name="Produkt_Typ" id="product" class="w-full rounded-lg border-gray-300">
+                                    <option value="15">Premium T-Shirt (15,00 €)</option>
+                                    <option value="35">Organic Hoodie (35,00 €)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Menge</label>
+                                <input type="number" name="Stueckzahl" id="quantity" value="20" min="10"
+                                    class="w-full rounded-lg border-gray-300">
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <label class="block text-xs font-bold mb-2 uppercase text-gray-500">Größenverteilung
+                                    (Optional)</label>
+                                <div class="grid grid-cols-5 gap-2 text-center text-xs">
+                                    <div>S<input type="number" name="Groesse_S"
+                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
+                                    <div>M<input type="number" name="Groesse_M"
+                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
+                                    <div>L<input type="number" name="Groesse_L"
+                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
+                                    <div>XL<input type="number" name="Groesse_XL"
+                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
+                                    <div>XXL<input type="number" name="Groesse_XXL"
+                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="pt-4">
-                            <label class="flex items-start gap-3 cursor-pointer">
-                                <input type="checkbox" id="sponsoring"
-                                    class="mt-1 rounded border-slate-300 text-accent focus:ring-accent">
-                                <span class="text-sm text-slate-600">
-                                    <strong class="text-slate-900 block">Sponsoring-Option aktivieren (-10%)</strong>
-                                    Wir drucken das D-SHIRTS Logo dezent auf den Ärmel.
-                                </span>
-                            </label>
-                        </div>
-                    </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Logo / Skizze Upload</label>
+                                <input type="file" name="Datei_Upload"
+                                    class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:bg-blue-50 file:text-blue-700 file:border-0 hover:file:bg-blue-100">
+                            </div>
 
-                    <!-- Result -->
-                    <div class="bg-slate-50 rounded-xl p-6 flex flex-col justify-between border border-slate-100">
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between text-slate-500">
-                                <span>Zwischensumme:</span>
-                                <span id="subtotal">0,00 €</span>
+                            <div id="design-extras" class="hidden">
+                                <label class="block text-sm font-bold mb-2 mt-4">Stil-Richtung (Optional)</label>
+                                <select name="Stil_Referenz" class="w-full rounded-lg border-gray-300 text-sm">
+                                    <option value="Keine">Keine Vorlage</option>
+                                    <option value="Freestyle">Freie Hand</option>
+                                </select>
                             </div>
-                            <div class="flex justify-between text-slate-900 font-bold hidden" id="design-fee-row">
-                                <span>Design-Pauschale:</span>
-                                <span id="design-fee">49,00 €</span>
-                            </div>
-                            <div class="flex justify-between text-green-600 font-medium hidden" id="bulk-discount-row">
-                                <span>Mengenrabatt (15%):</span>
-                                <span id="bulk-discount">-0,00 €</span>
-                            </div>
-                            <div class="flex justify-between text-green-600 font-medium hidden"
-                                id="sponsoring-discount-row">
-                                <span>Sponsoring (10%):</span>
-                                <span id="sponsoring-discount">-0,00 €</span>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2 mt-4">Beschreibung / Idee</label>
+                                <textarea name="Beschreibung" id="desc" rows="3" placeholder="Ihre Wünsche..."
+                                    class="w-full rounded-lg border-gray-300 text-sm"></textarea>
                             </div>
                         </div>
 
-                        <div class="mt-8 pt-6 border-t border-slate-200">
-                            <div class="flex justify-between items-end mb-1">
-                                <span class="text-slate-600 font-medium">Gesamtpreis (netto)</span>
-                                <span id="total-price" class="text-3xl font-bold text-slate-900 total-price">0,00
-                                    €</span>
+                        <div
+                            class="bg-slate-50 rounded-xl p-6 flex flex-col justify-between border border-slate-200 h-full">
+                            <div class="space-y-4">
+                                <div class="flex justify-between text-slate-500"><span>Produktpreis:</span> <span
+                                        id="subtotal">0,00 €</span></div>
+                                <div class="flex justify-between text-slate-900 font-bold hidden" id="fee-row">
+                                    <span>Design-Pauschale:</span> <span>49,00 €</span></div>
+                                <div class="flex justify-between text-green-600 hidden" id="bulk-row">
+                                    <span>Mengenrabatt:</span> <span id="bulk-disc">0,00 €</span></div>
+                                <div class="pt-4 border-t border-gray-200 flex justify-between items-end">
+                                    <span class="font-bold">Gesamt (Netto)</span>
+                                    <span class="text-3xl font-bold text-slate-900" id="total">0,00 €</span>
+                                </div>
+                                <input type="hidden" name="Berechneter_Preis" id="hidden-price">
                             </div>
-                            <div class="text-right text-xs text-slate-400 mb-6">zzgl. MwSt. und Versand</div>
 
-                            <div class="space-y-3">
-                                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST"
-                                    enctype="multipart/form-data" id="b2b-form" class="w-full">
-                                    <input type="hidden" name="_subject" value="Neue B2B Anfrage (D-SHIRTS)">
-                                    <input type="hidden" name="_captcha" value="false">
-                                    <input type="hidden" name="_next"
-                                        value="https://hansiprint.github.io/smart-qr-backend/danke.html">
-                                    <input type="hidden" name="_template" value="table">
-                                    <input type="hidden" name="Bestellmenge" id="hidden-menge">
-                                    <input type="hidden" name="Größenaufteilung" id="hidden-sizes">
-                                    <input type="hidden" name="Produktart" id="hidden-produkt">
-                                    <input type="hidden" name="Veredelung" id="hidden-veredelung">
-                                    <input type="hidden" name="Kalkulierter_Preis" id="hidden-preis">
-                                    <input type="hidden" name="Design_Service_Gebucht" id="hidden-service">
-                                    <input type="hidden" name="Gewaehlte_Stil_Vorlage" id="hidden-reference">
-                                    <input type="hidden" name="Kunden_Idee_Beschreibung" id="hidden-idee">
-                                    <input type="hidden" name="KI_Prompt" id="hidden-prompt">
-
-                                    <div class="mt-4 p-5 bg-slate-50 border border-slate-200 rounded-lg">
-                                        <h3 class="font-bold text-slate-800 mb-3 text-center">Angebot jetzt anfordern
-                                        </h3>
-                                        <div class="flex gap-2">
-                                            <input type="email" name="email" required placeholder="Deine E-Mail-Adresse"
-                                                class="w-full p-3 border border-slate-300 rounded-lg focus:ring-accent focus:border-accent text-sm">
-                                            <button type="button" onclick="safeSubmit()" id="submit-btn"
-                                                class="bg-black hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
-                                                ANFRAGEN
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <button id="pdf-btn"
-                                    class="block w-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-center font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mt-3">
-                                    <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
-                                    Offizielles Angebot als PDF laden
-                                </button>
+                            <div class="mt-8">
+                                <h3 class="font-bold text-center mb-4">Kostenlos Anfragen</h3>
+                                <div class="flex gap-2">
+                                    <input type="email" name="email" required placeholder="Ihre E-Mail"
+                                        class="w-full p-3 border border-gray-300 rounded-lg">
+                                    <button type="submit"
+                                        class="bg-black text-white font-bold px-6 py-3 rounded-lg hover:bg-slate-800 whitespace-nowrap">
+                                        ABSENDEN
+                                    </button>
+                                </div>
+                                <p class="text-xs text-center text-gray-400 mt-2">Unverbindlich & Kostenlos.</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Service Boxes -->
-        <section class="bg-slate-50 py-16 px-6 border-t border-slate-200">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Box 1 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                    <div
-                        class="w-12 h-12 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="material-symbols-outlined">design_services</span>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Gratis Grafik-Check</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Wir prüfen Ihre Vektordaten kostenlos auf
-                        Druckbarkeit und optimieren sie bei Bedarf.</p>
-                </div>
-                <!-- Box 2 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                    <div
-                        class="w-12 h-12 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="material-symbols-outlined">qr_code_2</span>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Nachbestell-Garantie</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Jeder Auftrag erhält einen QR-Code für
-                        blitzschnelle Nachbestellungen – auch für Einzelstücke.</p>
-                </div>
-                <!-- Box 3 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                    <div
-                        class="w-12 h-12 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="material-symbols-outlined">rocket_launch</span>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Express-Produktion</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Deadline im Nacken? Wir bieten
-                        48h-Express-Produktion für dringende Event-Aufträge.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-slate-900 text-slate-400 py-12 px-6 text-center text-sm">
-            <p>&copy; 2024 D-SHIRTS B2B Service. Alle Rechte vorbehalten.</p>
-        </footer>
-    </div>
-
-    <!-- Logic -->
     <script>
         const els = {
-            designRadios: document.getElementsByName('designOpt'),
-            ideaBox: document.getElementById('idea-box'),
-            ideaDesc: document.getElementById('idea-desc'),
-            aiStatus: document.getElementById('ai-status'),
-            uploadLabel: document.getElementById('upload-label'),
-            designFeeRow: document.getElementById('design-fee-row'),
             product: document.getElementById('product'),
-            quantity: document.getElementById('quantity'),
-            refinement: document.getElementById('refinement'),
-            sponsoring: document.getElementById('sponsoring'),
+            qty: document.getElementById('quantity'),
+            serviceCheck: document.getElementById('service-check'),
+            radios: document.getElementsByName('Service_Option'),
+            extras: document.getElementById('design-extras'),
             subtotal: document.getElementById('subtotal'),
-            bulkRow: document.getElementById('bulk-discount-row'),
-            bulkDiscount: document.getElementById('bulk-discount'),
-            sponsoringRow: document.getElementById('sponsoring-discount-row'),
-            sponsoringDiscount: document.getElementById('sponsoring-discount'),
-            total: document.getElementById('total-price'),
-            submitBtn: document.getElementById('submit-btn'),
-            pdfBtn: document.getElementById('pdf-btn'),
-            logoUpload: document.getElementById('logo-upload'),
-            logoMsg: document.getElementById('logo-msg'),
-            sizeSplitter: document.getElementById('size-splitter'),
-            sizeInputs: document.querySelectorAll('.size-input'),
-            sizeValidationMsg: document.getElementById('size-validation-msg'),
-            targetQty: document.getElementById('target-qty')
+            total: document.getElementById('total'),
+            hiddenPrice: document.getElementById('hidden-price'),
+            feeRow: document.getElementById('fee-row'),
+            bulkRow: document.getElementById('bulk-row'),
+            bulkDisc: document.getElementById('bulk-disc')
         };
 
-        // --- Design Service Logic ---
-        function checkDesignService() {
-            let isService = false;
-            els.designRadios.forEach(r => { if (r.checked && r.value === 'service') isService = true; });
-            return isService;
-        }
+        function calc() {
+            let q = parseInt(els.qty.value) || 0;
+            if (q < 1) q = 1;
+            let p = parseFloat(els.product.value);
+            let service = 0;
 
-        els.designRadios.forEach(r => {
-            r.addEventListener('change', () => {
-                const isService = checkDesignService();
-                if (isService) {
-                    els.ideaBox.classList.remove('hidden');
-                    els.designFeeRow.classList.remove('hidden');
-                    els.uploadLabel.textContent = "Lade hier Skizzen oder Logos zur Inspiration hoch (JPG/PNG ok)";
-                    els.logoMsg.textContent = ""; // Clear existing warnings
-                    if (els.ideaDesc.value.length > 0) els.aiStatus.classList.remove('hidden');
-                } else {
-                    els.ideaBox.classList.add('hidden');
-                    els.designFeeRow.classList.add('hidden');
-                    els.uploadLabel.textContent = "Logo-Upload (Check)";
-                    els.logoMsg.textContent = "";
-                    els.aiStatus.classList.add('hidden');
-                }
-                validateLogo(els.logoUpload.files[0]); // Re-validate if file exists
-                calculate();
-            });
-        });
-
-        // --- Logo Gatekeeper ---
-        function validateLogo(file) {
-            if (!file) {
-                els.logoMsg.textContent = '';
-                return;
-            }
-
-            const isService = checkDesignService();
-            const ext = file.name.split('.').pop().toLowerCase();
-            const sizeMB = file.size / (1024 * 1024);
-
-            if (isService) {
-                // Relaxed rules
-                els.logoMsg.innerHTML = '<span class="text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Danke! Wir nutzen dies als Referenz für das Design.</span>';
-                return;
-            }
-
-            // Strict rules
-            if (['ai', 'eps', 'pdf'].includes(ext)) {
-                els.logoMsg.innerHTML = '<span class="text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Perfektes Druckformat erkannt.</span>';
-            } else if (['jpg', 'jpeg', 'png'].includes(ext)) {
-                if (sizeMB < 1) {
-                    els.logoMsg.innerHTML = '<span class="text-red-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">error</span> Auflösung zu gering für Textildruck (< 1MB).</span>';
-                } else {
-                    els.logoMsg.innerHTML = '<span class="text-orange-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">warning</span> Achtung: Pixelgrafik. Vektordaten (AI, EPS, PDF) empfohlen.</span>';
-                }
-            } else {
-                els.logoMsg.innerHTML = '<span class="text-slate-500">Dateiformat wird geprüft...</span>';
-            }
-        }
-
-        els.logoUpload.addEventListener('change', (e) => validateLogo(e.target.files[0]));
-
-        // --- Size Splitter Logic ---
-        function updateSizeSplitter() {
-            let totalQty = parseInt(els.quantity.value) || 0;
-            if (totalQty < 10) totalQty = 10;
-
-            els.targetQty.textContent = totalQty;
-            els.sizeSplitter.classList.remove('hidden');
-
-            let currentSum = 0;
-            els.sizeInputs.forEach(input => {
-                currentSum += parseInt(input.value) || 0;
+            // Check Service
+            els.radios.forEach(r => {
+                if (r.checked && r.value.includes('Design-Service')) service = 49;
             });
 
-            if (currentSum === totalQty) {
-                els.sizeValidationMsg.innerHTML = `<span class="text-green-600 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts (Perfekt)</span>`;
+            if (service > 0) {
+                els.extras.classList.remove('hidden');
+                els.feeRow.classList.remove('hidden');
             } else {
-                els.sizeValidationMsg.innerHTML = `<span class="text-red-500 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts (Bitte anpassen)</span>`;
+                els.extras.classList.add('hidden');
+                els.feeRow.classList.add('hidden');
             }
-            // Removed submit blocking logic as requested
-        }
 
-        els.sizeInputs.forEach(input => {
-            input.addEventListener('input', updateSizeSplitter);
-        });
-
-
-        // --- Calculator Logic ---
-        function calculate() {
-            let qty = parseInt(els.quantity.value) || 0;
-            if (qty < 10) qty = 10;
-
-            const productPrice = parseFloat(els.product.value);
-            const refPrice = parseFloat(els.refinement.value);
-            const isService = checkDesignService();
-            const serviceFee = isService ? 49.00 : 0.00;
-
-            // Base Calculation
-            let subtotal = (productPrice + refPrice) * qty;
-
-            // Bulk Discount
-            let bulkDisc = 0;
-            if (qty >= 50) {
-                bulkDisc = subtotal * 0.15;
+            let sum = q * p;
+            let disc = 0;
+            if (q >= 50) {
+                disc = sum * 0.15;
                 els.bulkRow.classList.remove('hidden');
+                els.bulkDisc.innerText = "-" + disc.toFixed(2) + " €";
             } else {
                 els.bulkRow.classList.add('hidden');
             }
 
-            // Design fee is usually added to total, not discounted. 
-            // It's a fixed fee. Let's add it BEFORE sponsoring discount? 
-            // Or is sponsoring only on shirts? Usually only on merchandise value.
-            // Let's keep logic: (Merch - Bulk) + Fee? Or ((Merch + Fee) - Bulk)?
-            // Usually Fees are excluded from bulk discounts.
-            // Let's do: MerchTotal -> DiscountedMerch -> + Fee -> - Sponsoring?
-            // "Ab 50 Stück 15% Rabatt abziehen" refers to unit price usually.
+            let final = (sum - disc) + service;
 
-            let currentMerchTotal = subtotal - bulkDisc;
-            let currentTotal = currentMerchTotal + serviceFee;
-
-            let sponsorDisc = 0;
-            if (els.sponsoring.checked) {
-                // 10% on total or just merch? Assuming total invoice common for sponsoring deals or just merch.
-                // To be safe and generous, let's discount the Total so far.
-                sponsorDisc = currentTotal * 0.10;
-                els.sponsoringRow.classList.remove('hidden');
-            } else {
-                els.sponsoringRow.classList.add('hidden');
-            }
-
-            const finalTotal = currentTotal - sponsorDisc;
-
-            // Render
-            const fmt = (n) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-
-            els.subtotal.textContent = fmt(subtotal);
-            els.bulkDiscount.textContent = '-' + fmt(bulkDisc);
-            els.sponsoringDiscount.textContent = '-' + fmt(sponsorDisc);
-            els.total.textContent = fmt(finalTotal);
-
-            // Removed Mailto logic, handled by form submission now
-            updateSizeSplitter(); // Re-validate size split on qty change
+            els.subtotal.innerText = sum.toFixed(2) + " €";
+            els.total.innerText = final.toFixed(2) + " €";
+            els.hiddenPrice.value = final.toFixed(2) + " €";
         }
 
-        // --- Visual Picker Logic ---
-        function updateStyleReference(input) {
-            const val = input.value;
-            // Visual Style Logic
-            // Reset all borders
-            document.querySelectorAll('input[name="style_selection_visual"]').forEach(radio => {
-                const img = radio.parentElement.querySelector('img');
-                if (img) img.style.border = '2px solid #eee';
-            });
-            // highlight current
-            const currentImg = input.parentElement.querySelector('img');
-            if (currentImg) {
-                currentImg.style.border = '3px solid black';
-            }
+        els.product.addEventListener('change', calc);
+        els.qty.addEventListener('input', calc);
+        els.radios.forEach(r => r.addEventListener('change', calc));
 
-            document.getElementById('hidden-reference').value = val !== 'none' ? val : "Keine Vorlage";
-            calculate(); // Re-trigger potentially needed updates
-        }
-
-        // --- Robust Form Submission (Fail-Safe) ---
-        function safeSubmit() {
-            // Button Feedback
-            var btn = document.getElementById('submit-btn');
-            if (btn) {
-                btn.innerHTML = "Wird gesendet... ⏳";
-                btn.disabled = true;
-            }
-
-            try {
-                // 1. Basis-Daten holen
-                var menge = document.getElementById('quantity') ? document.getElementById('quantity').value : '0';
-                var produkt = document.getElementById('product') ? document.getElementById('product').value : 'Unbekannt';
-                // Using existing ID 'idea-desc'
-                var idee = document.getElementById('idea-desc') ? document.getElementById('idea-desc').value : 'Keine Beschreibung';
-
-                // In Hidden Fields schreiben
-                if (document.getElementById('hidden-menge')) document.getElementById('hidden-menge').value = menge;
-                if (document.getElementById('hidden-produkt')) document.getElementById('hidden-produkt').value = produkt;
-                if (document.getElementById('hidden-idee')) document.getElementById('hidden-idee').value = idee;
-
-                // 2. Preis holen
-                var preisDisplay = document.querySelector('.total-price'); // Added class to HTML to match
-                if (document.getElementById('hidden-preis')) {
-                    document.getElementById('hidden-preis').value = preisDisplay ? preisDisplay.innerText : (document.getElementById('total-price') ? document.getElementById('total-price').innerText : '0,00 €');
-                }
-
-                // 3. Design-Logik (Der kritische Teil)
-                var serviceCheck = document.getElementById('design-service-active');
-                var isService = serviceCheck && serviceCheck.checked;
-
-                if (document.getElementById('hidden-service')) {
-                    document.getElementById('hidden-service').value = isService ? "JA (+49€)" : "NEIN";
-                }
-
-                // Sizes Handling (Added to ensure it's not lost)
-                let sizesStr = "";
-                document.querySelectorAll('.size-input').forEach(input => {
-                    const val = parseInt(input.value) || 0;
-                    if (val > 0) sizesStr += `${input.dataset.size}: ${val}, `;
-                });
-                if (sizesStr) sizesStr = sizesStr.slice(0, -2);
-                if (document.getElementById('hidden-sizes')) document.getElementById('hidden-sizes').value = sizesStr || "Nicht spezifiziert";
-
-
-                var promptText = "Kein Design-Service gebucht.";
-
-                if (isService) {
-                    // Versuche sicher den Style zu lesen
-                    var styleRef = "Freie Hand";
-                    // Using existing name 'style_selection_visual'
-                    var selected = document.querySelector('input[name="style_selection_visual"]:checked');
-
-                    if (selected) {
-                        styleRef = selected.value;
-                    } else {
-                        // Fallback, falls nichts gewählt wurde (verhindert Absturz)
-                        console.log("Kein Bild gewählt, nutze Fallback");
-                        styleRef = "Standard (Freie Hand) / Keine Vorlage";
-                    }
-
-                    if (document.getElementById('hidden-reference')) {
-                        document.getElementById('hidden-reference').value = styleRef;
-                    }
-
-                    // Prompt bauen (IMMER OHNE TEXT)
-                    promptText = "VECTOR T-SHIRT DESIGN: " + idee +
-                        ", BASED ON STYLE: " + styleRef +
-                        ", streetwear aesthetic, bold linework, IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, NO LETTERS, isolated vector graphic on white background.";
-                }
-
-                if (document.getElementById('hidden-prompt')) {
-                    document.getElementById('hidden-prompt').value = promptText;
-                }
-
-            } catch (e) {
-                console.error("Fehler beim Datensammeln - Sende trotzdem:", e);
-                // Wir ignorieren den Fehler und senden das Formular trotzdem ab!
-            }
-
-            // 4. Absenden
-            var form = document.getElementById('b2b-form');
-            if (form) {
-                form.submit();
-            } else {
-                alert("Fehler: Formular nicht gefunden. Bitte Seite neu laden.");
-            }
-        }
-
-        // --- PDF Generation (jspdf) ---
-        window.jsPDF = window.jspdf.jsPDF;
-
-        els.pdfBtn.addEventListener('click', () => {
-            // Re-calc locally
-            let qty = parseInt(els.quantity.value) || 0;
-            if (qty < 10) qty = 10;
-            const productPrice = parseFloat(els.product.value);
-            const refPrice = parseFloat(els.refinement.value);
-            const isService = checkDesignService();
-            const serviceFee = isService ? 49.00 : 0.00;
-
-            let subtotal = (productPrice + refPrice) * qty;
-            let bulkDisc = (qty >= 50) ? subtotal * 0.15 : 0;
-            let currentMerchTotal = subtotal - bulkDisc;
-            let currentTotal = currentMerchTotal + serviceFee;
-            let sponsorDisc = els.sponsoring.checked ? currentTotal * 0.10 : 0;
-            const finalTotal = currentTotal - sponsorDisc;
-
-            const doc = new jsPDF();
-            const primaryColor = '#0f172a';
-
-            // Header
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(22);
-            doc.setTextColor(primaryColor);
-            doc.text("D-SHIRTS", 20, 20);
-
-            doc.setFontSize(10);
-            doc.setTextColor(100);
-            doc.text("UNVERBINDLICHER ENTWURF / TEST-DOKUMENT", 105, 20, { align: "center" });
-
-            // Sender
-            doc.setFontSize(10);
-            doc.setTextColor(80);
-            doc.setFont("helvetica", "normal");
-            doc.text("Musterfirma GmbH\nMusterstraße 1\n12345 Musterstadt", 20, 35);
-
-            // Meta
-            doc.text("Datum: 09.02.2026", 150, 35);
-            doc.text("Gültig bis: 23.02.2026", 150, 40);
-
-            // Title
-            doc.setFontSize(16);
-            doc.setTextColor(primaryColor);
-            doc.setFont("helvetica", "bold");
-            doc.text("Angebot #T-2024-001 (Entwurf)", 20, 65);
-
-            doc.setDrawColor(200);
-            doc.line(20, 70, 190, 70);
-
-            let y = 80;
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.text("Position 1", 20, y);
-
-            doc.setFont("helvetica", "normal");
-            const productName = els.product.options[els.product.selectedIndex].text;
-            doc.text(productName.split('(')[0].trim(), 50, y);
-
-            doc.setFont("helvetica", "bold");
-            doc.text(`${qty} Stk.`, 160, y, { align: "right" });
-            doc.text(`${subtotal.toFixed(2)} €`, 190, y, { align: "right" });
-
-            y += 8;
-            doc.setFontSize(10);
-            doc.setTextColor(100);
-            const refName = els.refinement.options[els.refinement.selectedIndex].text;
-            doc.text(`Veredelung: ${refName}`, 50, y);
-
-            // Optional Design Position
-            if (isService) {
-                y += 12;
-                doc.setTextColor(primaryColor);
-                doc.setFontSize(12);
-                doc.setFont("helvetica", "bold");
-                doc.text("Position 2", 20, y);
-                doc.setFont("helvetica", "normal");
-                doc.text("Profi-Design-Erstellung (Pauschal)", 50, y);
-                doc.text("1 Stk.", 160, y, { align: "right" });
-                doc.text("49,00 €", 190, y, { align: "right" });
-            }
-
-            // Discounts
-            if (bulkDisc > 0) {
-                y += (isService ? 12 : 12);
-                doc.setTextColor(0, 128, 0); // Green
-                doc.setFontSize(10);
-                doc.text(`Mengenrabatt (15%) auf Textil`, 50, y);
-                doc.text(`-${bulkDisc.toFixed(2)} €`, 190, y, { align: "right" });
-            }
-
-            if (sponsorDisc > 0) {
-                y += 6;
-                doc.setTextColor(0, 128, 0);
-                doc.text(`Sponsoring-Rabatt (10%) auf Gesamt`, 50, y);
-                doc.text(`-${sponsorDisc.toFixed(2)} €`, 190, y, { align: "right" });
-            }
-
-            // Size Split
-            y += 15;
-            doc.setTextColor(80);
-            doc.setFontSize(10);
-            doc.text("Größenaufteilung:", 50, y);
-            let sizesText = [];
-            els.sizeInputs.forEach(input => {
-                const val = parseInt(input.value) || 0;
-                if (val > 0) sizesText.push(`${input.dataset.size}: ${val}`);
-            });
-            doc.text(sizesText.join(" | "), 85, y);
-
-            // Total
-            y += 20;
-            doc.setDrawColor(0);
-            doc.line(20, y, 190, y);
-            y += 10;
-            doc.setFontSize(14);
-            doc.setTextColor(primaryColor);
-            doc.setFont("helvetica", "bold");
-            doc.text("Gesamtsumme (netto):", 120, y, { align: "right" });
-            doc.text(`${finalTotal.toFixed(2)} €`, 190, y, { align: "right" });
-
-            y += 6;
-            doc.setFontSize(8);
-            doc.setTextColor(150);
-            doc.text("zzgl. gesetzlicher MwSt.", 190, y, { align: "right" });
-
-            // Footer
-            doc.setFontSize(8);
-            doc.setTextColor(150);
-            doc.text("Musterfirma GmbH | Geschäftsführer: Max Mustermann | HRB 123456 | USt-ID: DE123456789", 105, 280, { align: "center" });
-
-            // Save
-            doc.save("Angebot_Entwurf_D-SHIRTS.pdf");
-        });
-
-
-        // Listeners
-        [els.product, els.quantity, els.refinement, els.sponsoring].forEach(el => {
-            el.addEventListener('input', calculate);
-            el.addEventListener('change', calculate);
-        });
-
-        // Init
-        calculate();
+        calc(); // Init
     </script>
 </body>
 
