@@ -50,10 +50,10 @@
                     id="b2b-form">
 
                     <input type="hidden" name="_subject" value="Neue B2B Anfrage (D-SHIRTS)">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://hansiprint.github.io/smart-qr-backend/danke.html">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="text" name="_honey" style="display:none">
+                    <!-- DEBUG MODUS AKTIV -->
+                    <!-- <input type="hidden" name="_captcha" value="false"> -->
+                    <!-- <input type="hidden" name="_next" value="https://hansiprint.github.io/smart-qr-backend/danke.html"> -->
+                    <!-- <input type="text" name="_honey" style="display:none"> -->
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
@@ -132,9 +132,11 @@
                                 <div class="flex justify-between text-slate-500"><span>Produktpreis:</span> <span
                                         id="subtotal">0,00 €</span></div>
                                 <div class="flex justify-between text-slate-900 font-bold hidden" id="fee-row">
-                                    <span>Design-Pauschale:</span> <span>49,00 €</span></div>
+                                    <span>Design-Pauschale:</span> <span>49,00 €</span>
+                                </div>
                                 <div class="flex justify-between text-green-600 hidden" id="bulk-row">
-                                    <span>Mengenrabatt:</span> <span id="bulk-disc">0,00 €</span></div>
+                                    <span>Mengenrabatt:</span> <span id="bulk-disc">0,00 €</span>
+                                </div>
                                 <div class="pt-4 border-t border-gray-200 flex justify-between items-end">
                                     <span class="font-bold">Gesamt (Netto)</span>
                                     <span class="text-3xl font-bold text-slate-900" id="total">0,00 €</span>
