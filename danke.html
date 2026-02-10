@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>D-SHIRTS B2B - Vielen Dank!</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f172a", // Slate 900
+                        "accent": "#3b82f6", // Blue 500
+                        "background-light": "#f8fafc", // Slate 50
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-primary transition-colors duration-300">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Header -->
+        <nav
+            class="sticky top-0 z-50 flex items-center bg-white/90 backdrop-blur-md px-6 py-4 justify-between border-b border-gray-200">
+            <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
+                <span
+                    class="material-symbols-outlined text-primary text-[20px] transition-transform group-hover:-translate-x-1">arrow_back_ios</span>
+                <p class="text-gray-500 text-sm font-medium tracking-wide">Zurück zur Startseite</p>
+            </a>
+            <div class="font-bold tracking-widest text-primary">D-SHIRTS <span class="text-accent">B2B</span></div>
+        </nav>
+
+        <!-- Content -->
+        <section class="flex-grow flex items-center justify-center py-20 px-6">
+            <div class="max-w-md w-full text-center">
+                <div class="mb-8 flex justify-center">
+                    <div class="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-5xl">check_circle</span>
+                    </div>
+                </div>
+
+                <h1 class="text-4xl font-bold text-slate-900 mb-4 font-display tracking-tight">
+                    Vielen Dank!
+                </h1>
+
+                <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+                    Danke für Ihre E-Mail. Wir melden uns mit dem Design dann bei Ihnen.
+                </p>
+
+                <a href="index.html"
+                    class="inline-block bg-black hover:bg-slate-800 text-white font-bold px-8 py-3 rounded-lg transition-colors shadow-lg hover:shadow-xl">
+                    Zurück zur Startseite
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-400 py-12 px-6 text-center text-sm mt-auto">
+            <p>&copy; 2024 D-SHIRTS B2B Service. Alle Rechte vorbehalten.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
