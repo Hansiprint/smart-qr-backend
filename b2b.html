@@ -4,12 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>D-SHIRTS B2B - Firmen & Vereine</title>
+    <title>D-SHIRTS B2B</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;display=swap"
         rel="stylesheet" />
     <style>
@@ -17,8 +13,11 @@
             font-family: 'Manrope', sans-serif;
         }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300;
+        /* Style für das ausgewählte Bild: Dicker Rahmen */
+        .visual-option input:checked+div {
+            border-color: black;
+            border-width: 3px;
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -26,135 +25,117 @@
 <body class="bg-slate-50 text-slate-900">
     <nav
         class="sticky top-0 z-50 bg-white/90 backdrop-blur-md px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-        <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black">
-            <span class="material-symbols-outlined text-[20px]">arrow_back_ios</span> Zurück
-        </a>
+        <a href="index.html" class="text-sm font-bold text-gray-500 hover:text-black">« Zurück</a>
         <div class="font-bold tracking-widest">D-SHIRTS <span class="text-blue-600">B2B</span></div>
     </nav>
 
-    <section class="py-16 px-6 text-center bg-white">
-        <h1 class="text-4xl font-bold mb-4">Textildruck für <span
-                class="text-blue-600 underline decoration-blue-200">Profis</span>.</h1>
-        <p class="text-slate-600 max-w-2xl mx-auto">Hochwertige Arbeitskleidung & Merchandise. Faire Preise,
-            Premium-Qualität.</p>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-4 pb-20">
+    <section class="max-w-3xl mx-auto px-4 py-10">
         <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
             <div class="bg-slate-900 p-6 text-white text-center">
-                <h2 class="text-xl font-bold">Anfrage konfigurieren</h2>
+                <h2 class="text-xl font-bold">Anfrage senden</h2>
             </div>
 
             <div class="p-8">
-                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST" enctype="multipart/form-data"
-                    id="b2b-form">
+                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST" enctype="multipart/form-data">
 
-                    <input type="hidden" name="_subject" value="Neue B2B Anfrage (D-SHIRTS)">
-                    <!-- DEBUG MODUS AKTIV -->
-                    <!-- <input type="hidden" name="_captcha" value="false"> -->
-                    <!-- <input type="hidden" name="_next" value="https://hansiprint.github.io/smart-qr-backend/danke.html"> -->
-                    <!-- <input type="text" name="_honey" style="display:none"> -->
+                    <input type="hidden" name="_subject" value="Neue Anfrage (+ Prompt)">
+                    <input type="hidden" name="_next" value="https://hansiprint.github.io/smart-qr-backend/danke.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="SYSTEM_KI_PROMPT" id="ghost-prompt" value="Kein Design-Service.">
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="space-y-6">
 
-                        <div class="space-y-6">
-                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                                <label class="block text-sm font-bold mb-3">Druckdaten-Situation?</label>
-                                <div class="space-y-2">
-                                    <label class="flex items-center gap-3 cursor-pointer">
-                                        <input type="radio" name="Service_Option" value="Eigene Datei vorhanden" checked
-                                            class="text-blue-600 focus:ring-blue-500 border-gray-300">
-                                        <span class="text-sm">Ich habe eine Datei (Standard)</span>
-                                    </label>
-                                    <label class="flex items-center gap-3 cursor-pointer">
-                                        <input type="radio" name="Service_Option" value="Design-Service (+49 EUR)"
-                                            id="service-check"
-                                            class="text-blue-600 focus:ring-blue-500 border-gray-300">
-                                        <span class="text-sm font-bold">Ich brauche ein Design (+49€)</span>
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <label class="block text-sm font-bold mb-2">Design-Option?</label>
+                            <select name="Service_Option" id="service-select" class="w-full rounded border-gray-300">
+                                <option value="Standard">Datei vorhanden (Standard)</option>
+                                <option value="Design-Service">Ich brauche ein Design (+49€)</option>
+                            </select>
+                        </div>
 
+                        <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-bold mb-2">Produkt</label>
-                                <select name="Produkt_Typ" id="product" class="w-full rounded-lg border-gray-300">
-                                    <option value="15">Premium T-Shirt (15,00 €)</option>
-                                    <option value="35">Organic Hoodie (35,00 €)</option>
+                                <label class="text-xs font-bold uppercase text-gray-500">Produkt</label>
+                                <select name="Produkt" class="w-full rounded border-gray-300 text-sm">
+                                    <option>Premium T-Shirt</option>
+                                    <option>Organic Hoodie</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-bold mb-2">Menge</label>
-                                <input type="number" name="Stueckzahl" id="quantity" value="20" min="10"
-                                    class="w-full rounded-lg border-gray-300">
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <label class="block text-xs font-bold mb-2 uppercase text-gray-500">Größenverteilung
-                                    (Optional)</label>
-                                <div class="grid grid-cols-5 gap-2 text-center text-xs">
-                                    <div>S<input type="number" name="Groesse_S"
-                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
-                                    <div>M<input type="number" name="Groesse_M"
-                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
-                                    <div>L<input type="number" name="Groesse_L"
-                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
-                                    <div>XL<input type="number" name="Groesse_XL"
-                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
-                                    <div>XXL<input type="number" name="Groesse_XXL"
-                                            class="w-full mt-1 border-gray-200 rounded text-center size-input"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-bold mb-2">Logo / Skizze Upload</label>
-                                <input type="file" name="Datei_Upload"
-                                    class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:bg-blue-50 file:text-blue-700 file:border-0 hover:file:bg-blue-100">
-                            </div>
-
-                            <div id="design-extras" class="hidden">
-                                <label class="block text-sm font-bold mb-2 mt-4">Stil-Richtung (Optional)</label>
-                                <select name="Stil_Referenz" class="w-full rounded-lg border-gray-300 text-sm">
-                                    <option value="Keine">Keine Vorlage</option>
-                                    <option value="Freestyle">Freie Hand</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-bold mb-2 mt-4">Beschreibung / Idee</label>
-                                <textarea name="Beschreibung" id="desc" rows="3" placeholder="Ihre Wünsche..."
-                                    class="w-full rounded-lg border-gray-300 text-sm"></textarea>
+                                <label class="text-xs font-bold uppercase text-gray-500">Menge</label>
+                                <input type="number" name="Menge" value="20"
+                                    class="w-full rounded border-gray-300 text-sm">
                             </div>
                         </div>
 
-                        <div
-                            class="bg-slate-50 rounded-xl p-6 flex flex-col justify-between border border-slate-200 h-full">
-                            <div class="space-y-4">
-                                <div class="flex justify-between text-slate-500"><span>Produktpreis:</span> <span
-                                        id="subtotal">0,00 €</span></div>
-                                <div class="flex justify-between text-slate-900 font-bold hidden" id="fee-row">
-                                    <span>Design-Pauschale:</span> <span>49,00 €</span>
-                                </div>
-                                <div class="flex justify-between text-green-600 hidden" id="bulk-row">
-                                    <span>Mengenrabatt:</span> <span id="bulk-disc">0,00 €</span>
-                                </div>
-                                <div class="pt-4 border-t border-gray-200 flex justify-between items-end">
-                                    <span class="font-bold">Gesamt (Netto)</span>
-                                    <span class="text-3xl font-bold text-slate-900" id="total">0,00 €</span>
-                                </div>
-                                <input type="hidden" name="Berechneter_Preis" id="hidden-price">
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <label class="block text-xs font-bold mb-2 uppercase text-gray-500">Größenverteilung</label>
+                            <div class="grid grid-cols-5 gap-2 text-center text-xs">
+                                <div>S<input type="number" name="Groesse_S"
+                                        class="w-full mt-1 border-gray-200 rounded text-center"></div>
+                                <div>M<input type="number" name="Groesse_M"
+                                        class="w-full mt-1 border-gray-200 rounded text-center"></div>
+                                <div>L<input type="number" name="Groesse_L"
+                                        class="w-full mt-1 border-gray-200 rounded text-center"></div>
+                                <div>XL<input type="number" name="Groesse_XL"
+                                        class="w-full mt-1 border-gray-200 rounded text-center"></div>
+                                <div>XXL<input type="number" name="Groesse_XXL"
+                                        class="w-full mt-1 border-gray-200 rounded text-center"></div>
+                            </div>
+                        </div>
+
+                        <div id="design-area" class="hidden border-l-4 border-blue-500 pl-4 py-2 bg-slate-50">
+                            <h3 class="font-bold text-sm mb-3">Stil wählen</h3>
+
+                            <div class="flex flex-wrap gap-3 mb-4">
+                                <label class="visual-option cursor-pointer">
+                                    <input type="radio" name="Stil_Referenz" value="Freestyle" checked class="hidden"
+                                        onchange="updatePrompt()">
+                                    <div
+                                        class="w-20 h-20 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center text-xs text-center p-1 hover:bg-gray-100 transition-all">
+                                        Freie Hand
+                                    </div>
+                                </label>
+
+                                <label class="visual-option cursor-pointer">
+                                    <input type="radio" name="Stil_Referenz" value="Graffiti Style" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <div
+                                        class="w-20 h-20 bg-gray-200 border-2 border-gray-200 rounded-lg flex items-center justify-center text-xs overflow-hidden">
+                                        Graffiti
+                                    </div>
+                                </label>
+
+                                <label class="visual-option cursor-pointer">
+                                    <input type="radio" name="Stil_Referenz" value="Vintage Cartoon" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <div
+                                        class="w-20 h-20 bg-gray-200 border-2 border-gray-200 rounded-lg flex items-center justify-center text-xs overflow-hidden">
+                                        Cartoon
+                                    </div>
+                                </label>
                             </div>
 
-                            <div class="mt-8">
-                                <h3 class="font-bold text-center mb-4">Kostenlos Anfragen</h3>
-                                <div class="flex gap-2">
-                                    <input type="email" name="email" required placeholder="Ihre E-Mail"
-                                        class="w-full p-3 border border-gray-300 rounded-lg">
-                                    <button type="submit"
-                                        class="bg-black text-white font-bold px-6 py-3 rounded-lg hover:bg-slate-800 whitespace-nowrap">
-                                        DEBUG SENDEN 🐞
-                                    </button>
-                                </div>
-                                <p class="text-xs text-center text-gray-400 mt-2">Unverbindlich & Kostenlos.</p>
+                            <label class="text-xs font-bold uppercase text-gray-500">Deine Idee</label>
+                            <textarea name="Beschreibung_Idee" id="user-desc" rows="3"
+                                placeholder="Z.B. Ein Bär mit Sonnenbrille..."
+                                class="w-full rounded border-gray-300 text-sm"></textarea>
+                            <p class="text-xs text-blue-500 mt-1">✨ KI-Prompt wird generiert...</p>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold uppercase text-gray-500">Datei / Skizze</label>
+                            <input type="file" name="attachment" class="block w-full text-sm text-slate-500">
+                        </div>
+
+                        <div class="pt-4">
+                            <div class="flex gap-2">
+                                <input type="email" name="email" required placeholder="Deine E-Mail Adresse"
+                                    class="w-full p-3 border border-gray-300 rounded-lg">
+                                <button type="submit"
+                                    class="bg-black text-white font-bold px-8 py-3 rounded-lg hover:bg-slate-800">
+                                    ABSENDEN
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -164,61 +145,38 @@
     </section>
 
     <script>
-        const els = {
-            product: document.getElementById('product'),
-            qty: document.getElementById('quantity'),
-            serviceCheck: document.getElementById('service-check'),
-            radios: document.getElementsByName('Service_Option'),
-            extras: document.getElementById('design-extras'),
-            subtotal: document.getElementById('subtotal'),
-            total: document.getElementById('total'),
-            hiddenPrice: document.getElementById('hidden-price'),
-            feeRow: document.getElementById('fee-row'),
-            bulkRow: document.getElementById('bulk-row'),
-            bulkDisc: document.getElementById('bulk-disc')
-        };
+        const serviceSelect = document.getElementById('service-select');
+        const designArea = document.getElementById('design-area');
+        const userDesc = document.getElementById('user-desc');
+        const ghostField = document.getElementById('ghost-prompt');
 
-        function calc() {
-            let q = parseInt(els.qty.value) || 0;
-            if (q < 1) q = 1;
-            let p = parseFloat(els.product.value);
-            let service = 0;
-
-            // Check Service
-            els.radios.forEach(r => {
-                if (r.checked && r.value.includes('Design-Service')) service = 49;
-            });
-
-            if (service > 0) {
-                els.extras.classList.remove('hidden');
-                els.feeRow.classList.remove('hidden');
+        // Toggle Design Area
+        serviceSelect.addEventListener('change', function () {
+            if (this.value === 'Design-Service') {
+                designArea.classList.remove('hidden');
             } else {
-                els.extras.classList.add('hidden');
-                els.feeRow.classList.add('hidden');
+                designArea.classList.add('hidden');
+                ghostField.value = "Kein Design-Service gebucht.";
             }
+            updatePrompt();
+        });
 
-            let sum = q * p;
-            let disc = 0;
-            if (q >= 50) {
-                disc = sum * 0.15;
-                els.bulkRow.classList.remove('hidden');
-                els.bulkDisc.innerText = "-" + disc.toFixed(2) + " €";
-            } else {
-                els.bulkRow.classList.add('hidden');
-            }
+        // Prompt Generator
+        function updatePrompt() {
+            if (serviceSelect.value !== 'Design-Service') return;
 
-            let final = (sum - disc) + service;
+            const idee = userDesc.value || "Keine Beschreibung";
+            let stil = "Freestyle";
+            const selectedStyle = document.querySelector('input[name="Stil_Referenz"]:checked');
+            if (selectedStyle) stil = selectedStyle.value;
 
-            els.subtotal.innerText = sum.toFixed(2) + " €";
-            els.total.innerText = final.toFixed(2) + " €";
-            els.hiddenPrice.value = final.toFixed(2) + " €";
+            // Der magische String:
+            const prompt = `VECTOR T-SHIRT DESIGN: ${idee}, STYLE REF: ${stil}, streetwear aesthetic, bold linework, IMAGE ONLY, NO TEXT, isolated on white background.`;
+
+            ghostField.value = prompt;
         }
 
-        els.product.addEventListener('change', calc);
-        els.qty.addEventListener('input', calc);
-        els.radios.forEach(r => r.addEventListener('change', calc));
-
-        calc(); // Init
+        userDesc.addEventListener('input', updatePrompt);
     </script>
 </body>
 
