@@ -196,7 +196,7 @@
                                             <img src="./images/image-1.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-1</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-1.png</div>
                                         </label>
 
                                         <!-- Image 2 -->
@@ -207,7 +207,7 @@
                                             <img src="./images/image-2.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-2</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-2.png</div>
                                         </label>
 
                                         <!-- Image 3 -->
@@ -218,7 +218,7 @@
                                             <img src="./images/image-3.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-3</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-3.png</div>
                                         </label>
 
                                         <!-- Image 4 -->
@@ -229,7 +229,7 @@
                                             <img src="./images/image-4.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-4</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-4.png</div>
                                         </label>
 
                                         <!-- Image 5 -->
@@ -240,7 +240,7 @@
                                             <img src="./images/image-5.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-5</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-5.png</div>
                                         </label>
 
                                         <!-- Image 6 -->
@@ -251,7 +251,7 @@
                                             <img src="./images/image-6.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-6</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-6.png</div>
                                         </label>
 
                                         <!-- Image 7 -->
@@ -262,7 +262,7 @@
                                             <img src="./images/image-7.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-7</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-7.png</div>
                                         </label>
 
                                         <!-- Image 8 -->
@@ -273,7 +273,7 @@
                                             <img src="./images/image-8.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-8</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-8.png</div>
                                         </label>
 
                                         <!-- Image 9 -->
@@ -284,7 +284,7 @@
                                             <img src="./images/image-9.png"
                                                 onerror="this.parentElement.style.display='none'"
                                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #eee; border-radius: 8px; transition: all 0.2s;">
-                                            <div style="font-size: 10px; margin-top: 2px;">image-9</div>
+                                            <div style="font-size: 10px; margin-top: 2px;">image-9.png</div>
                                         </label>
                                     </div>
                                 </div>
@@ -539,17 +539,10 @@
 
             if (currentSum === totalQty) {
                 els.sizeValidationMsg.innerHTML = `<span class="text-green-600 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts (Perfekt)</span>`;
-                els.submitBtn.disabled = false;
-                els.pdfBtn.disabled = false;
-                els.submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                els.pdfBtn.classList.remove('opacity-50', 'cursor-not-allowed');
             } else {
-                els.sizeValidationMsg.innerHTML = `<span class="text-red-500 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts</span>`;
-                els.submitBtn.disabled = true;
-                els.pdfBtn.disabled = true;
-                els.submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                els.pdfBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                els.sizeValidationMsg.innerHTML = `<span class="text-red-500 font-bold">Verteilt: ${currentSum} von ${totalQty} Shirts (Bitte anpassen)</span>`;
             }
+            // Removed submit blocking logic as requested
         }
 
         els.sizeInputs.forEach(input => {
