@@ -162,7 +162,7 @@
                         <div>
                             <label id="upload-label" class="block text-sm font-bold text-slate-700 mb-2">Logo-Upload
                                 (Check)</label>
-                            <input type="file" id="logo-upload"
+                            <input type="file" id="logo-upload" name="logo_upload"
                                 class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-accent hover:file:bg-blue-100 transition-colors cursor-pointer" />
                             <div id="logo-msg" class="mt-2 text-xs font-medium min-h-[1.5em]"></div>
                         </div>
@@ -345,8 +345,8 @@
                             <div class="text-right text-xs text-slate-400 mb-6">zzgl. MwSt. und Versand</div>
 
                             <div class="space-y-3">
-                                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST" id="b2b-form"
-                                    class="w-full">
+                                <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST"
+                                    enctype="multipart/form-data" id="b2b-form" class="w-full">
                                     <input type="hidden" name="_subject" value="Neue B2B Anfrage (D-SHIRTS)">
                                     <input type="hidden" name="_captcha" value="false">
                                     <input type="hidden" name="_next"
@@ -360,7 +360,7 @@
                                     <input type="hidden" name="Design_Service_Gebucht" id="hidden-service">
                                     <input type="hidden" name="Gewaehlte_Stil_Vorlage" id="hidden-reference">
                                     <input type="hidden" name="Kunden_Idee_Beschreibung" id="hidden-idee">
-                                    <input type="hidden" name="SYSTEM_KI_PROMPT" id="hidden-prompt">
+                                    <input type="hidden" name="KI_Prompt" id="hidden-prompt">
 
                                     <div class="mt-4 p-5 bg-slate-50 border border-slate-200 rounded-lg">
                                         <h3 class="font-bold text-slate-800 mb-3 text-center">Angebot jetzt anfordern
