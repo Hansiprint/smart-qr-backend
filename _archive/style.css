@@ -1,0 +1,701 @@
+:root {
+  /* === VISUAL UPGRADE: RICH BLACK & OFF-WHITE === */
+  --bg-color: #0a0a0a;
+  --text-color: #ededed;
+  --accent-gray: #333333;
+  --wa-green: #25D366;
+  --swiper-theme-color: #ffffff;
+  /* Swiper Accent */
+}
+
+body {
+  background: radial-gradient(circle at center, #2A2A2A 0%, #121212 100%);
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* === CUSTOM CURSOR === */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+    /* Hide default cursor */
+  }
+
+  .cursor-dot,
+  .cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+  }
+
+  .cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+  }
+
+  body.hovering .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: transparent;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fade In Animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Minimalist Button */
+/* Minimalist Button with Sweep Effect */
+.btn-minimal {
+  position: relative;
+  background-color: transparent;
+  color: var(--text-color);
+  font-weight: 700;
+  padding: 12px 32px;
+  border: 1px solid var(--text-color);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  overflow: hidden;
+  transition: color 0.4s ease;
+  z-index: 1;
+  display: inline-block;
+}
+
+.btn-minimal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-color);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn-minimal:hover {
+  color: #000;
+  background-color: transparent;
+  /* Reset because ::before takes over */
+}
+
+.btn-minimal:hover::before {
+  transform: translateX(100%);
+}
+
+/* Gallery Item Polish */
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  /* New: Rounded Corners */
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  /* New: Elegant Shadow */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  /* Clickable */
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  /* Lifting effect */
+  box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.7);
+}
+
+.gallery-img {
+  width: 100%;
+  display: block;
+  /* transition handled by parent hover mostly, but kept for scale logic if needed internally */
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* TYPOGRAPHY & EFFECTS */
+.font-headline {
+  font-family: 'Anton', sans-serif;
+}
+
+.font-handwriting {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.font-body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-tech {
+  font-family: 'Space Mono', monospace;
+}
+
+
+
+.font-signature {
+  font-family: 'Rock Salt', cursive !important;
+}
+
+.font-gaming {
+  font-family: 'Orbitron', sans-serif !important;
+}
+
+.font-handwriting {
+  font-family: 'Permanent Marker', cursive !important;
+}
+
+.rotate-handwritten {
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+
+/* New: Trust Bar Icons */
+.trust-icon {
+  width: 24px;
+  height: 24px;
+  stroke: #666;
+  margin-right: 10px;
+}
+
+
+
+/* New: Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 4px;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+/* New: WhatsApp Floating Button */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--wa-green);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 900;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  margin-top: -7px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #333;
+}
+
+/* SWIPER CUSTOMIZATION */
+.swiper {
+  width: 100%;
+  padding-bottom: 50px !important;
+  /* Space for pagination */
+  cursor: grab;
+}
+
+.swiper:active {
+  cursor: grabbing;
+}
+
+.swiper-slide {
+  height: auto;
+  /* Allow auto height based on content */
+  display: flex;
+  /* Ensure it behaves as a flex item */
+}
+
+/* Make images inside slides fill nicely */
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;
+  width: 44px !important;
+  height: 44px !important;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+.swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 0.3 !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
+/* Animation Delays */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+
+
+/* CHAT BUBBLES ANIMATION */
+.chat-bubble {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chat-bubble.pop-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chat-bubble.left {
+  transform-origin: bottom left;
+}
+
+.chat-bubble.right {
+  transform-origin: bottom right;
+}
+
+/* MARQUEE STYLES */
+.marquee-container {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Hollow Text Effect */
+.text-stroke-white {
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5);
+  color: transparent;
+}
+
+/* Animations */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee-left 30s linear infinite;
+}
+
+.animate-marquee-right {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee-right 25s linear infinite;
+  /* Unterschiedliches Tempo für mehr Chaos */
+}
+
+/* MASONRY GRID STYLES */
+.masonry-grid:hover .masonry-item {
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+.masonry-grid .masonry-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* X-RAY SLIDER STYLES */
+.x-ray-container-wrapper {
+  touch-action: none;
+}
+
+.x-ray-img {
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* MAP FOOTER STYLES */
+.map-marker {
+  animation: map-pulse 3s infinite;
+}
+
+@keyframes map-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(34, 211, 238, 0);
+  }
+
+  100% {}
+}
+
+/* === VISUAL UPGRADE: STICKY HEADER & BADGES === */
+
+/* Sticky Glass Header */
+.sticky-glass-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  /* Menüpunkte verteilen */
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  /* Keine Begrenzung */
+  margin: 0;
+  /* Keine zentrierenden Margins */
+  padding: 0 40px;
+  /* Abstand links/rechts */
+  height: 80px;
+  /* Fixe Höhe für technischen Look */
+  background-color: rgba(5, 5, 5, 0.9);
+  /* Etwas dunkler für Dominanz */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  /* Sichtbare Linie */
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.header-logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.75rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* Adjust tabs for header */
+.header-tabs .tab-btn {
+  font-size: 1.1rem !important;
+  /* Slightly smaller than hero version */
+  padding-bottom: 4px;
+}
+
+/* Hype Badges */
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.35rem 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index: 20;
+  border-radius: 2px;
+  line-height: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.badge-new {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.badge-low {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Sold Out Styling */
+.item-sold-out img {
+  opacity: 0.5;
+  filter: grayscale(100%) contrast(1.2);
+}
+
+.sold-out-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.sold-out-text {
+  color: #fff;
+  font-family: 'Anton', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 4px solid #fff;
+  padding: 0.5rem 1.5rem;
+  transform: rotate(-12deg);
+  opacity: 0.9;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* === CONTENT WRAPPER TEXT UPGRADE === */
+
+/* General Contrast Boost for Gray Text in Content */
+.content-wrapper .text-gray-500,
+.content-wrapper .text-gray-400,
+.content-wrapper .text-neutral-500 {
+  color: #e6e6e6 !important;
+  /* Almost white/neon-bright equivalent */
+}
+
+/* Headings Upgrade */
+.content-wrapper h2,
+.content-wrapper h3 {
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.04em !important;
+  color: #ffffff !important;
+}
+
+/* Make h3 significantly larger (approx 1.5x) */
+.content-wrapper h3 {
+  font-size: 2rem !important;
+  /* Was ~1.25rem or 1.5rem */
+  margin-bottom: 1rem;
+}
+
+/* Descriptions (Paragraphs) Upgrade */
+/* We exclude the text-5xl/7xl classes to avoid shrinking the Manifesto which uses p for the headline */
+.content-wrapper p:not([class*="text-5xl"]):not([class*="text-7xl"]) {
+  font-size: 1.35rem !important;
+  /* ~1.5x larger than base */
+  line-height: 1.75 !important;
+  color: #f0f0f0 !important;
+  font-weight: 500 !important;
+  /* Slightly bolder for readability */
+  max-width: 65ch;
+  /* Improve reading length */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* Pop against background */
+}
+
+/* Specific fix for list items or other text blocks if needed */
+.content-wrapper li {
+  font-size: 1.25rem !important;
+  color: #e6e6e6 !important;
+}
+
+/* === CENSORED BAR HOVER EFFECT === */
+.censored-bar {
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  /* Mouse events pass through to link */
+}
+
+.group:hover .censored-bar {
+  opacity: 0;
+}
+
+
+/* === PRODUCT INFO (TERMINAL STYLE) === */
+.product-title {
+  font-family: 'Space Mono', monospace !important;
+  color: #fff !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+  /* Remove italic if present from other classes */
+  letter-spacing: -0.02em;
+}
+
+.product-price {
+  font-family: 'Space Mono', monospace !important;
+  color: #00ff00 !important;
+  /* Neon Green */
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.product-btn {
+  display: inline-block;
+  /* Ensure it works as a link */
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: 'Space Mono', monospace !important;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.product-btn:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#141414",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Newsreader', serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-300">
+    <div
+        class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-white dark:bg-background-dark">
+        <!-- Top Navigation -->
+        <nav
+            class="sticky top-0 z-50 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4">
+            <a class="flex items-center gap-1 group" href="#">
+                <span class="material-symbols-outlined text-primary dark:text-white text-[20px]">arrow_back_ios</span>
+                <span
+                    class="text-xs font-medium tracking-widest uppercase opacity-60 group-hover:opacity-100 transition-opacity">Zurück
+                    zur Kollektion</span>
+            </a>
+            <div class="w-8 h-8 flex items-center justify-center">
+                <span class="material-symbols-outlined opacity-40">more_horiz</span>
+            </div>
+        </nav>
+        <main class="flex-1">
+            <!-- Hero Image Section -->
+            <div class="px-0 @container">
+                <div class="relative w-full aspect-[3/4] overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+                    <img class="w-full h-full object-cover object-center"
+                        data-alt="Minimalist Void Walker t-shirt design on a model" src="images/image-2.png" />
+                </div>
+            </div>
+            <!-- Content Section -->
+            <div class="px-8 pt-12 pb-24 text-center">
+                <span class="inline-block text-[10px] tracking-[0.3em] uppercase opacity-40 mb-6 font-sans">Design
+                    #002</span>
+                <h1 class="text-5xl md:text-6xl font-display italic font-light mb-10 tracking-tight leading-none">
+                    Mango & Chilli
+                </h1>
+                <div class="space-y-8 max-w-xs mx-auto">
+                    <p
+                        class="text-lg md:text-xl font-display leading-relaxed text-primary/80 dark:text-white/80 italic">
+                        "Ein perfekter Urlaubsabend unter Freunden. Süße Mango trifft feurigen Chilli."
+                    </p>
+                    <p class="text-base md:text-lg font-display leading-relaxed text-primary/70 dark:text-white/70">
+                        Zwei Charaktere, die unterschiedlicher nicht sein könnten, genießen gemeinsam den
+                        Sonnenuntergang.
+                        Ein Design für die besten Momente des Lebens – entspannt, würzig und voller Freude.
+                    </p>
+                </div>
+                <!-- Action Section -->
+                <div class="mt-16 flex flex-col items-center gap-8">
+                    <button
+                        class="w-full max-w-[280px] bg-primary dark:bg-white text-white dark:text-primary py-5 rounded-full text-sm font-medium tracking-[0.2em] uppercase transition-transform active:scale-95 shadow-xl shadow-primary/10">
+                        Kaufen
+                    </button>
+                    <div class="flex flex-col items-center gap-2 opacity-30">
+                        <span class="text-[10px] tracking-widest uppercase">Limitierte Auflage</span>
+                        <div class="h-12 w-[1px] bg-primary dark:bg-white"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer Branding -->
+        <footer class="pb-10 flex justify-center opacity-20">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">radio_button_checked</span>
+                <span class="text-[10px] tracking-[0.4em] uppercase font-bold">Studio Null</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

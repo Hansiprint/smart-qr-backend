@@ -1,0 +1,6 @@
+# Permanente Weiterleitungen (Sofort, ohne Ladebalken)
+/go/fred    https://cafefred.de/        301
+/go/frisch  https://wikipedia.org       301
+
+# Fallback (alles andere geht auf die Startseite)
+/* /index.html                 200

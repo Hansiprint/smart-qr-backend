@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <!-- Cache Buster Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+        }
+    </style>
+    <script>
+        // Version 7.0 - Production Clean
+        var path = window.location.pathname;
+        var redirects = {
+            "frisch": "https://de.wikipedia.org/wiki/Frische",
+            "fred": "https://cafefred.de/",
+            "test": "https://google.com"
+        };
+
+        // Robust Parsing Logic
+        if (path.toLowerCase().includes("/go/")) {
+            var parts = path.split(/\/go\//i);
+            if (parts[1]) {
+                var key = parts[1].replace(/\/$/, "").toLowerCase().trim();
+
+                if (redirects[key]) {
+                    // Direct replace
+                    window.location.replace(redirects[key]);
+                } else {
+                    // Fallback to absolute index path
+                    window.location.replace("/smart-qr-backend/index.html");
+                }
+            } else {
+                window.location.replace("/smart-qr-backend/index.html");
+            }
+        } else {
+            window.location.replace("/smart-qr-backend/index.html");
+        }
+    </script>
+</head>
+
+<body>
+    <p>Loading...</p>
+</body>
+
+</html>

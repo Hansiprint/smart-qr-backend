@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>D-Shirts Lookbook</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#d41132", "background-light": "#ffffff", "background-dark": "#1a0b0d" },
+                    fontFamily: { "display": ["Manrope", "sans-serif"], "serif": ["Playfair Display", "serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal.hidden {
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .modal.visible {
+            pointer-events: auto;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#1b0d10] dark:text-white transition-colors duration-300">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Header -->
+        <header
+            class="fixed top-0 z-40 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+            <h2 class="text-[#1b0d10] dark:text-white text-xl font-bold tracking-[0.2em] font-display">D-SHIRTS</h2>
+            <a href="b2b.html"
+                class="text-sm font-bold text-primary hover:text-red-700 tracking-widest uppercase border border-primary px-4 py-2 rounded-full transition-colors">Für
+                Vereine & Firmen</a>
+        </header>
+
+        <!-- Main Content -->
+        <main class="pt-24 pb-20 px-4">
+            <div class="px-6 py-12 text-center max-w-4xl mx-auto">
+                <h1 class="font-serif italic text-[42px] md:text-[64px] leading-tight text-[#1b0d10] dark:text-white">
+                    Die Neue Kollektion</h1>
+                <div class="mt-4 h-px w-16 bg-primary mx-auto"></div>
+                <p class="mt-6 text-sm uppercase tracking-[0.3em] font-medium text-gray-500">Frühling / Sommer 2024</p>
+            </div>
+
+            <!-- Grid -->
+            <section class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Items will be injected here via JS -->
+            </section>
+        </main>
+
+
+
+    </div>
+
+    <script>
+        // Story Data embedded directly for SPA functionality
+        const stories = [
+            { id: 1, title: "Teuto Hase", img: "./images/image-1.png", link: "teuto-hase.html", text: "\"Gemeinsam stark am Teutoburger Wald.\" Entworfen für Firmenläufe und Teams, die zusammen durchs Ziel gehen wollen. Dynamik, Zusammenhalt und Spaß an der Bewegung." },
+            { id: 2, title: "Mango & Chilli", img: "./images/image-2.png", link: "mango-chilli.html", text: "\"Ein perfekter Urlaubsabend unter Freunden.\" Süße Mango trifft feurigen Chilli. Zwei Charaktere, die den Sonnenuntergang genießen. Entspannt, würzig und voller Freude." },
+            { id: 3, title: "Urlaubszitrone", img: "./images/image-3.png", link: "urlaubszitrone.html", text: "Wenn die Sonne brennt und das Leben süß-sauer ist. Diese Zitrone gibt alles – und schwitzt dabei. Ein humorvoller Begleiter für heiße Tage und Strandbars." },
+            { id: 4, title: "Wütendes Eichhörnchen", img: "./images/image-4.png", link: "wuetendes-eichhoernchen.html", text: "Es kocht innerlich, aber die Fassade steht. Eine Studie über unterdrückte Wut in flauschiger Form. Für Tage, an denen man einfach nur nicken und lächeln möchte." },
+            { id: 5, title: "Der Igel", img: "./images/image-5.png", link: "igel.html", text: "\"Präzision auf den Punkt gebracht.\" Stachelig gegen Ablenkungen, scharf im Fokus. Perfekt für Bogenschießvereine oder alle, die ihre Ziele fest im Blick haben." },
+            { id: 6, title: "Teuto Hase (Mono)", img: "./images/image-6.png", link: "teuto-hase-mono.html", text: "\"Die klassische Edition.\" Reduziert auf das Wesentliche: Form, Kontrast und Charakter. Zeitloses Schwarz-Weiß. Schlichte Eleganz für den Team-Spirit." },
+            { id: 7, title: "Fluchendes Eichhörnchen", img: "./images/image-7.png", link: "fluchendes-eichhoernchen.html", text: "Teil der CENSORED Collection. Wenn Worte fehlen, übernehmen die Symbole. Manchmal läuft es einfach nicht rund – sprich es aus, aber jugendfrei." },
+            { id: 8, title: "Cooler Bagel", img: "./images/image-8.png", link: "bagel.html", text: "Mehr als nur ein Snack. Dieser Bagel hat Style und eine Verbindung zur digitalen Welt. Scan den QR-Code. Fashion trifft Foodie-Culture." },
+            { id: 9, title: "Cooles Hörnchen", img: "./images/image-9.png", link: "cooles-hoernchen.html", text: "Bereit für die Zukunft. Ausgestattet mit einem QR-Code verbindet es Natur mit moderner Technik. Ein interaktives Statement. Scan it, love it." }
+        ];
+
+        // Render Grid
+        const gridContainer = document.querySelector('section');
+        gridContainer.innerHTML = stories.map(story => `
+            <a href="${story.link}" class="group cursor-pointer flex flex-col gap-4 block">
+                <div class="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 rounded-lg">
+                    <img src="${story.img}" alt="${story.title}" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
+                </div>
+                <div class="text-center md:text-left px-2">
+                    <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1b0d10] dark:text-white">${story.title}</p>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Story ansehen</p>
+                </div>
+            </a>
+        `).join('');
+    </script>
+</body>
+<!-- Cache Buster: 2026-02-09 15:18:40 -->
+
+</html><!-- FORCE REFRESH V5 -->
