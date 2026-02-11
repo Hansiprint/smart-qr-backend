@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>D-SHIRTS B2B</title>
+    <title>D-SHIRTS B2B - Anfrage</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&amp;display=swap"
         rel="stylesheet" />
@@ -14,10 +14,16 @@
         }
 
         /* Style für das ausgewählte Bild: Dicker Rahmen */
-        .visual-option input:checked+div {
-            border-color: black;
+        .visual-option input:checked+img {
+            border-color: black !important;
             border-width: 3px;
             transform: scale(1.02);
+        }
+
+        .visual-option input:checked+div {
+            border-color: black !important;
+            border-width: 3px;
+            background-color: #f0f9ff;
         }
     </style>
 </head>
@@ -33,24 +39,35 @@
         <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
             <div class="bg-slate-900 p-6 text-white text-center">
                 <h2 class="text-xl font-bold">Anfrage senden</h2>
+                <p class="text-slate-400 text-sm">Express-Service für Vereine & Firmen</p>
             </div>
 
             <div class="p-8">
                 <form action="https://formsubmit.co/hansiprint@yahoo.com" method="POST" enctype="multipart/form-data">
 
-                    <input type="hidden" name="_subject" value="Neue Anfrage (+ Prompt)">
+                    <input type="hidden" name="_subject" value="Neue B2B Anfrage (+ Prompt)">
                     <input type="hidden" name="_next" value="https://hansiprint.github.io/smart-qr-backend/danke.html">
                     <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
                     <input type="hidden" name="SYSTEM_KI_PROMPT" id="ghost-prompt" value="Kein Design-Service.">
 
                     <div class="space-y-6">
 
-                        <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
                             <label class="block text-sm font-bold mb-2">Design-Option?</label>
-                            <select name="Service_Option" id="service-select" class="w-full rounded border-gray-300">
-                                <option value="Standard">Datei vorhanden (Standard)</option>
-                                <option value="Design-Service">Ich brauche ein Design (+49€)</option>
-                            </select>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="Service_Option" value="Nein (Datei vorhanden)" checked
+                                        class="text-blue-600" id="opt-no">
+                                    <span class="text-sm">Nein, Datei vorhanden</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="Service_Option" value="Ja (+49 EUR)" class="text-blue-600"
+                                        id="opt-yes">
+                                    <span class="text-sm font-bold">Ja, Design erstellen (+49€)</span>
+                                </label>
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -63,7 +80,7 @@
                             </div>
                             <div>
                                 <label class="text-xs font-bold uppercase text-gray-500">Menge</label>
-                                <input type="number" name="Menge" value="20"
+                                <input type="number" name="Menge" value="20" min="10"
                                     class="w-full rounded border-gray-300 text-sm">
                             </div>
                         </div>
@@ -71,70 +88,109 @@
                         <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <label class="block text-xs font-bold mb-2 uppercase text-gray-500">Größenverteilung</label>
                             <div class="grid grid-cols-5 gap-2 text-center text-xs">
-                                <div>S<input type="number" name="Groesse_S"
+                                <div>S<input type="number" name="Groesse_S" placeholder="-"
                                         class="w-full mt-1 border-gray-200 rounded text-center"></div>
-                                <div>M<input type="number" name="Groesse_M"
+                                <div>M<input type="number" name="Groesse_M" placeholder="-"
                                         class="w-full mt-1 border-gray-200 rounded text-center"></div>
-                                <div>L<input type="number" name="Groesse_L"
+                                <div>L<input type="number" name="Groesse_L" placeholder="-"
                                         class="w-full mt-1 border-gray-200 rounded text-center"></div>
-                                <div>XL<input type="number" name="Groesse_XL"
+                                <div>XL<input type="number" name="Groesse_XL" placeholder="-"
                                         class="w-full mt-1 border-gray-200 rounded text-center"></div>
-                                <div>XXL<input type="number" name="Groesse_XXL"
+                                <div>XXL<input type="number" name="Groesse_XXL" placeholder="-"
                                         class="w-full mt-1 border-gray-200 rounded text-center"></div>
                             </div>
                         </div>
 
-                        <div id="design-area" class="hidden border-l-4 border-blue-500 pl-4 py-2 bg-slate-50">
-                            <h3 class="font-bold text-sm mb-3">Stil wählen</h3>
+                        <div id="design-area"
+                            class="hidden border-l-4 border-blue-500 pl-4 py-2 bg-slate-50 transition-all">
+                            <h3 class="font-bold text-sm mb-3">Stil wählen (Klick auf Bild)</h3>
 
-                            <div class="flex flex-wrap gap-3 mb-4">
-                                <label class="visual-option cursor-pointer">
-                                    <input type="radio" name="Stil_Referenz" value="Freestyle" checked class="hidden"
-                                        onchange="updatePrompt()">
+                            <div class="flex flex-wrap gap-3 mb-4 max-h-60 overflow-y-auto p-1">
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="Freestyle (Keine Vorlage)" checked
+                                        class="hidden" onchange="updatePrompt()">
                                     <div
                                         class="w-20 h-20 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center text-xs text-center p-1 hover:bg-gray-100 transition-all">
                                         Freie Hand
                                     </div>
                                 </label>
 
-                                <label class="visual-option cursor-pointer">
-                                    <input type="radio" name="Stil_Referenz" value="Graffiti Style" class="hidden"
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-1.png" class="hidden"
                                         onchange="updatePrompt()">
-                                    <div
-                                        class="w-20 h-20 bg-gray-200 border-2 border-gray-200 rounded-lg flex items-center justify-center text-xs overflow-hidden">
-                                        Graffiti
-                                    </div>
+                                    <img src="images/image-1.png" alt="Style 1"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-2.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-2.png" alt="Style 2"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-3.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-3.png" alt="Style 3"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-4.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-4.png" alt="Style 4"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-5.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-5.png" alt="Style 5"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-6.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-6.png" alt="Style 6"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-7.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-7.png" alt="Style 7"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-8.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-8.png" alt="Style 8"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
+                                </label>
+                                <label class="visual-option cursor-pointer relative group">
+                                    <input type="radio" name="Stil_Referenz" value="image-9.png" class="hidden"
+                                        onchange="updatePrompt()">
+                                    <img src="images/image-9.png" alt="Style 9"
+                                        class="w-20 h-20 object-cover border-2 border-gray-200 rounded-lg hover:border-blue-400 transition-all">
                                 </label>
 
-                                <label class="visual-option cursor-pointer">
-                                    <input type="radio" name="Stil_Referenz" value="Vintage Cartoon" class="hidden"
-                                        onchange="updatePrompt()">
-                                    <div
-                                        class="w-20 h-20 bg-gray-200 border-2 border-gray-200 rounded-lg flex items-center justify-center text-xs overflow-hidden">
-                                        Cartoon
-                                    </div>
-                                </label>
                             </div>
-
                             <label class="text-xs font-bold uppercase text-gray-500">Deine Idee</label>
                             <textarea name="Beschreibung_Idee" id="user-desc" rows="3"
                                 placeholder="Z.B. Ein Bär mit Sonnenbrille..."
                                 class="w-full rounded border-gray-300 text-sm"></textarea>
-                            <p class="text-xs text-blue-500 mt-1">✨ KI-Prompt wird generiert...</p>
+                            <p class="text-xs text-blue-500 mt-1">✨ System erstellt Prompt für Design-Abteilung...</p>
                         </div>
 
-                        <div>
-                            <label class="text-xs font-bold uppercase text-gray-500">Datei / Skizze</label>
-                            <input type="file" name="attachment" class="block w-full text-sm text-slate-500">
+                        <div class="mt-4">
+                            <label class="text-xs font-bold uppercase text-gray-500">Datei / Skizze (Optional)</label>
+                            <input type="file" name="attachment"
+                                class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                         </div>
 
-                        <div class="pt-4">
+                        <div class="pt-6">
                             <div class="flex gap-2">
                                 <input type="email" name="email" required placeholder="Deine E-Mail Adresse"
                                     class="w-full p-3 border border-gray-300 rounded-lg">
                                 <button type="submit"
-                                    class="bg-black text-white font-bold px-8 py-3 rounded-lg hover:bg-slate-800">
-                                    ABSENDEN
+                                    class="bg-black text-white font-bold px-8 py-3 rounded-lg hover:bg-slate-800 transition-colors whitespace-nowrap">
+                                    ANFRAGE SENDEN
                                 </button>
                             </div>
                         </div>
@@ -145,37 +201,44 @@
     </section>
 
     <script>
-        const serviceSelect = document.getElementById('service-select');
+        const optYes = document.getElementById('opt-yes');
+        const optNo = document.getElementById('opt-no');
         const designArea = document.getElementById('design-area');
         const userDesc = document.getElementById('user-desc');
         const ghostField = document.getElementById('ghost-prompt');
 
-        // Toggle Design Area
-        serviceSelect.addEventListener('change', function () {
-            if (this.value === 'Design-Service') {
+        // Funktion zum Ein/Ausblenden
+        function toggleDesign() {
+            if (optYes.checked) {
                 designArea.classList.remove('hidden');
             } else {
                 designArea.classList.add('hidden');
                 ghostField.value = "Kein Design-Service gebucht.";
             }
             updatePrompt();
-        });
+        }
 
-        // Prompt Generator
+        optYes.addEventListener('change', toggleDesign);
+        optNo.addEventListener('change', toggleDesign);
+
+        // Funktion zum Prompt bauen
         function updatePrompt() {
-            if (serviceSelect.value !== 'Design-Service') return;
+            if (!optYes.checked) return;
 
             const idee = userDesc.value || "Keine Beschreibung";
+
+            // Suche den gewählten Stil
             let stil = "Freestyle";
             const selectedStyle = document.querySelector('input[name="Stil_Referenz"]:checked');
             if (selectedStyle) stil = selectedStyle.value;
 
-            // Der magische String:
-            const prompt = `VECTOR T-SHIRT DESIGN: ${idee}, STYLE REF: ${stil}, streetwear aesthetic, bold linework, IMAGE ONLY, NO TEXT, isolated on white background.`;
+            // Der Prompt für Kittle/Midjourney (Text Only, No Fonts)
+            const prompt = `VECTOR T-SHIRT DESIGN: ${idee}, BASED ON STYLE REF: ${stil}, streetwear aesthetic, bold linework, IMAGE ONLY, NO TEXT, NO TYPOGRAPHY, isolated on white background.`;
 
             ghostField.value = prompt;
         }
 
+        // Live-Update beim Tippen
         userDesc.addEventListener('input', updatePrompt);
     </script>
 </body>
